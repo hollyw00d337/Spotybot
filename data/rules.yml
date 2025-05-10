@@ -1,0 +1,33 @@
+version: "3.1"
+
+rules:
+  #- rule: Saludar y mostrar menu al saludar
+    #conversation_start: true
+    #steps:
+      #- intent: saludar
+      #- action: utter_bienvenida
+      #- action: utter_menu_principal
+
+  - rule: Seleccionar opcion de problemas
+    steps:
+      - intent: opcion_problemas
+      - action: utter_opcion_problemas
+
+  - rule: Seleccionar opcion de pagos
+    steps:
+    - intent: opcion_pagos
+    - action: utter_opcion_pagos
+  - rule: Seleccionar opcion de agendar
+    steps:
+      - intent: opcion_agendar
+      - action: utter_opcion_agendar
+  - rule: Seleccionar opcion de celular
+    steps:
+      - intent: opcion_celular
+      - action: utter_opcion_celular
+
+  - rule: Seleccionar opcion de otros
+    steps:
+      - intent: opcion_otros
+      - action: utter_opcion_otros
+

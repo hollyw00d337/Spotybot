@@ -1,0 +1,32 @@
+version: "3.1"
+
+stories:
+  - story: Usuario saluda
+    steps:
+      - intent: saludar
+      - action: utter_bienvenida
+      - action: utter_menu_principal
+
+  - story: Usuario elige opción problemas
+    steps:
+      - intent: opcion_problemas
+      - action: utter_opcion_problemas
+
+  - story: Usuario elige opción pagos
+    steps:
+      - intent: opcion_pagos
+      - action: utter_opcion_pagos
+
+  - story: Usuario elige agendar visita
+    steps:
+      - intent: opcion_agendar
+      - action: utter_opcion_agendar
+
+  - story: Usuario elige otros
+    steps:
+      - intent: opcion_otros
+      - action: utter_opcion_otros
+  - story: Regresar al menu principal desde cualquier punto
+    steps:
+      - intent: regresar_menu
+      - action: utter_menu_principal

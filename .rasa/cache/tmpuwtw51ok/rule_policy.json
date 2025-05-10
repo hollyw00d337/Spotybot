@@ -1,0 +1,30 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_agendar\"}}]": "utter_opcion_agendar",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_agendar\"}}, {\"prev_action\": {\"action_name\": \"utter_opcion_agendar\"}, \"user\": {\"intent\": \"opcion_agendar\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_problemas\"}}]": "utter_opcion_problemas",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_problemas\"}}, {\"prev_action\": {\"action_name\": \"utter_opcion_problemas\"}, \"user\": {\"intent\": \"opcion_problemas\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_pagos\"}}]": "utter_opcion_pagos",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_pagos\"}}, {\"prev_action\": {\"action_name\": \"utter_opcion_pagos\"}, \"user\": {\"intent\": \"opcion_pagos\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_otros\"}}]": "utter_opcion_otros",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_otros\"}}, {\"prev_action\": {\"action_name\": \"utter_opcion_otros\"}, \"user\": {\"intent\": \"opcion_otros\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {},
+    "rules_not_in_stories": [
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_agendar\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_otros\"}}, {\"prev_action\": {\"action_name\": \"utter_opcion_otros\"}, \"user\": {\"intent\": \"opcion_otros\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_problemas\"}}]",
+      "predicting default action with intent back",
+      "predicting default action with intent restart",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_agendar\"}}, {\"prev_action\": {\"action_name\": \"utter_opcion_agendar\"}, \"user\": {\"intent\": \"opcion_agendar\"}}]",
+      "predicting default action with intent session_start",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_pagos\"}}, {\"prev_action\": {\"action_name\": \"utter_opcion_pagos\"}, \"user\": {\"intent\": \"opcion_pagos\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_problemas\"}}, {\"prev_action\": {\"action_name\": \"utter_opcion_problemas\"}, \"user\": {\"intent\": \"opcion_problemas\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_pagos\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_otros\"}}]"
+    ]
+  }
+}

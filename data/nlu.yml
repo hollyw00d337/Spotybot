@@ -1,0 +1,101 @@
+version: "3.1"
+
+nlu:
+- intent: saludar
+  examples: |
+    - hola
+    - hey
+    - qué tal
+    - buenos días
+    - buenas noches
+    - buenas tardes
+    - hola qué tal
+    - vamos
+    - qué onda
+    - buen día
+
+- intent: despedida
+  examples: |
+    - adiós
+    - nos vemos
+    - hasta luego
+    - buenas noches
+    - chau
+    - que tengas un buen día
+    - hasta pronto
+    - nos vemos luego
+    - bye
+
+- intent: afirmación
+  examples: |
+    - sí
+    - claro
+    - por supuesto
+    - correcto
+    - suena bien
+    - exacto
+
+- intent: negación
+  examples: |
+    - no
+    - nunca
+    - no creo
+    - no me gusta
+    - de ninguna manera
+    - no realmente
+
+
+
+- intent: desafío_bot
+  examples: |
+    - ¿eres un bot?
+    - ¿eres humano?
+    - ¿estoy hablando con un bot?
+    - ¿estoy hablando con un humano?
+
+
+- intent: opcion_problemas
+  examples: |
+    - 1
+    - uno
+    - tengo un problema
+    - problemas con el servicio
+    - tengo fallas
+
+- intent: opcion_pagos
+  examples: |
+    - dos
+    - 2
+    - quiero pagar
+    - consultar cuenta
+    - verificar pago
+- intent: opcion_agendar
+  examples: |
+    - tres
+    - 3
+    - agendar tecnico
+    - agendar cita
+    - quiero un tecnico
+- intent: opcion_celular
+  examples: |
+    - cuatro
+    - 4
+    - energia
+    - celular
+- intent: opcion_otros
+  examples: |
+    - cinco
+    - 5
+    - informacion
+    - quiero saber mas
+    - otra consulta
+    r
+- intent: regresar_menu
+  examples: |
+    - volver al inicio
+    - regresar al menú
+    - quiero el menú principal
+    - regresar
+    - volver al menú
+    - ir al menú principal
+
