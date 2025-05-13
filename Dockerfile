@@ -1,25 +1,32 @@
-# Usa una imagen base oficial de Python 3.11
+# Usa una imagen base compatible
 FROM python:3.10.17-slim
 
-# Establece el directorio de trabajo dentro del contenedor
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia el archivo de requerimientos
-COPY requirements.txt .
-
-# Instala las dependencias del sistema necesarias para Rasa
+# Instala dependencias del sistema necesarias para Rasa y ciencia de datos
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
+    libffi-dev \
+    libssl-dev \
+    python3-dev \
     git \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Actualiza pip y luego instala las dependencias de Python
-RUN pip install --upgrade pip \
+# Copia el archivo de dependencias primero para aprovechar el cache
+COPY requirements.txt .
+
+# Actualiza pip y setuptools, luego instala dependencias de Python
+RUN pip install --upgrade pip setuptools wheel \
     && pip install --no-cache-dir -r requirements.txt
 
-# Copia el resto del código fuente al contenedor
+# Copia el resto del repositorio
 COPY . .
 
-# Comando por defecto para ejecutar el bot
-CMD ["python", "bot.py"]
+# Expone el puerto
+EXPOSE 5005
+
+# Comando por defecto para correr el bot
+CMD ["rasa", "run", "--enable-api", "--cors", "*"]
