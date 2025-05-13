@@ -1,19 +1,21 @@
-# Dockerfile, imagen base donde crearemos el contenedor, usando python 3.11 como version
+# Imagen base con Python 3.11
 FROM python:3.11-slim
-#Copiar todo el codigo fuente de la repo
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar el código fuente al contenedor
 COPY . /app
 
-#instala Rasa
-RUN pip install --upgrade pip
-RUN pip install rasa==3.11
-#copiamos archivos del proyecto
-COPY . /app
-#Cambiamos el directorio usandolo como comando predeterminado
-WORKDIR /app
-# Entrenamos el modelo de Rasa
+# Actualizar pip e instalar Rasa
+RUN pip install --upgrade pip \
+    && pip install rasa==3.1.1
+
+# Entrenar el modelo de Rasa
 RUN rasa train
 
-# Exponemos el puerto recomendado por Rasa
+# Exponer el puerto recomendado por Rasa
 EXPOSE 5005
-#Comando que se ejecutara al inicial el contenedor
-CMD ["run", "--enable-api", "--cors", "*"]
+
+# Comando que se ejecutará al iniciar el contenedor
+CMD ["rasa", "run", "--enable-api", "--cors", "*"]
