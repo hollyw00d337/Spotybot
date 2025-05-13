@@ -1,30 +1,45 @@
-# Imagen base con Python 3.11
-FROM python:3.10-slim
+# Usa una imagen base de Python 3.11
+FROM python:3.11-slim
 
-# Establecer el directorio de trabajo
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar el código fuente al contenedor
-COPY . /app
+# Evita que Python escriba archivos .pyc
+ENV PYTHONDONTWRITEBYTECODE=1
 
-# Instalar dependencias del sistema necesarias para Rasa
+# Asegura que el stdout/stderr no esté bufferizado
+ENV PYTHONUNBUFFERED=1
+
+# Instala dependencias del sistema necesarias para compilar grpcio y otros paquetes
 RUN apt-get update && apt-get install -y \
     build-essential \
+    gcc \
+    git \
+    curl \
     libffi-dev \
     libssl-dev \
-    python3-dev \
+    libpq-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    zlib1g-dev \
+    libjpeg-dev \
+    libblas-dev \
+    liblapack-dev \
+    gfortran \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-    
-# Actualizar pip e instalar Rasa
-RUN pip install --upgrade pip \
-    && pip install rasa==3.1.1
 
-# Entrenar el modelo de Rasa
-RUN rasa train
+# Copia los archivos de requerimientos
+COPY requirements.txt .
 
-# Exponer el puerto recomendado por Rasa
-EXPOSE 5005
+# Actualiza pip y herramientas necesarias para construir paquetes
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
-# Comando que se ejecutará al iniciar el contenedor
-CMD ["rasa", "run", "--enable-api", "--cors", "*"]
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia el resto de tu proyecto al contenedor
+COPY . .
+
+# Comando por defecto (
+CMD ["rasa", "--help"]
+
