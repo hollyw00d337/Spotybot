@@ -1,5 +1,5 @@
 # Usa una imagen base compatible
-FROM python:3.10.17-slim
+FROM python:3.9.22.-slim
 
 # Establece el directorio de trabajo
 WORKDIR /app
