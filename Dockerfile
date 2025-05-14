@@ -1,24 +1,20 @@
-FROM python:3.9.22-slim
+FROM python:3.9-slim  # Neutral (no menciona Debian explícitamente)
 
 WORKDIR /app
 
-# Instala dependencias del sistema (evita paquetes innecesarios)
+# Instala solo dependencias esenciales (compatibles con cualquier host)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     python3-dev \
     libffi-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Fija versiones ANTIGUAS de pip/setuptools antes de instalar dependencias
-RUN pip install --upgrade "pip==21.3.1" "setuptools==59.6.0" "wheel==0.37.1"
+# Fija versiones críticas
+RUN pip install --upgrade "pip==20.3.4" "setuptools==59.6.0"
 
 COPY requirements.txt .
-
-# Instala dependencias con --no-deps para evitar conflictos
-RUN pip install --no-cache-dir --no-deps -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 5005
-
-CMD ["rasa", "run", "--enable-api", "--cors", "*"]
+CMD ["rasa", "run", "--enable-api"]
