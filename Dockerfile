@@ -1,24 +1,29 @@
-# Usa una imagen base con Python 3.10
-FROM python:3.10-slim
+# Usa la imagen oficial de Rasa 3.6.2 (Python 3.8 embebido)
+FROM rasa/rasa:3.6.2-full
 
-# Actualiza los paquetes e instala dependencias necesarias
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    git \
+# --- Configuración segura ---
+USER root
+
+#Instala dependencias del sistema SOLO si son necesarias
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gcc \
+    python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Crea y define el directorio de trabajo
-WORKDIR /app
+#Copia selectiva de archivos (evita sobrescribir dependencias existentes)
+COPY data /app/data
+COPY actions /app/actions
+COPY config.yml /app/
+COPY domain.yml /app/
+COPY endpoints.yml /app/
 
-# Copia los archivos del proyecto
-COPY . /app
 
-# Instala Rasa
-RUN pip install --upgrade pip && pip install rasa
+# --- Vuelve al usuario no-root ---
+USER 1001
 
-# Puerto expuesto por Rasa
+# Puerto expuesto
 EXPOSE 5005
 
-# Comando por defecto al ejecutar el contenedor
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--debug"]
+# Comando de inicio (ajusta según necesidades)
+CMD ["rasa", "run", "--enable-api", "--cors", "*"]
