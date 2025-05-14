@@ -1,0 +1,6 @@
+models/
+.git/
+__pycache__/
+*.tar.gz
+.env
+credentials.yml  # Si contiene secrets
