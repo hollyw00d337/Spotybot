@@ -1,19 +1,22 @@
-FROM python:3.9-slim  # Neutral (no menciona Debian explícitamente)
+# ¡IMPORTANTE! Usa esta imagen base específica
+FROM python:3.9.18-slim-buster
 
 WORKDIR /app
 
-# Instala solo dependencias esenciales (compatibles con cualquier host)
+# Instala dependencias del sistema necesarias
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     python3-dev \
     libffi-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Fija versiones críticas
-RUN pip install --upgrade "pip==20.3.4" "setuptools==59.6.0"
+# ¡CRÍTICO! Fija versiones ANTES de instalar dependencias
+RUN pip install --upgrade "pip==20.3.4" "setuptools==59.6.0" "wheel==0.37.1"
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+# Instala PyYAML desde fuente sin usar wheels
+RUN pip install --no-cache-dir --no-binary :all: -r requirements.txt
 
 COPY . .
 
