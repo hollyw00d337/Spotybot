@@ -1,16 +1,24 @@
-# Usa la imagen oficial de Rasa 3.6.2 (TODO incluido)
-FROM rasa/rasa:3.6.2-full
+# Usa una imagen base con Python 3.10
+FROM python:3.10-slim
 
-# Copia SOLO los archivos necesarios (evita duplicar dependencias)
-COPY data /app/data
-COPY actions /app/actions
-COPY config.yml /app/
-COPY domain.yml /app/
-COPY credentials.yml /app/
-COPY endpoints.yml /app/
+# Actualiza los paquetes e instala dependencias necesarias
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-USER 1001
+# Crea y define el directorio de trabajo
+WORKDIR /app
 
+# Copia los archivos del proyecto
+COPY . /app
 
+# Instala Rasa
+RUN pip install --upgrade pip && pip install rasa
+
+# Puerto expuesto por Rasa
 EXPOSE 5005
-CMD ["rasa", "run", "--enable-api", "--cors", "*"]
+
+# Comando por defecto al ejecutar el contenedor
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--debug"]
