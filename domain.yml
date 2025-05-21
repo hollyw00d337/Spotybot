@@ -2,21 +2,42 @@ version: "3.1"
 
 intents:
   - saludar
-  - menu_principal
+  - elegir_opcion
+  - despedida
   - opcion_problemas
   - opcion_pagos
   - opcion_agendar
-  - opcion_celular
   - opcion_otros
-  - elegir_problemas
   - regresar_menu
-  - despedida
+  - submenu_problemas
+  - submenu_pagos
+  - submenu_agendar
+  - submenu_otros
+  - submenu_celular
+
+entities:
+  - numero_opcion
+
+slots:
+  estado_menu:
+    type: text
+    influence_conversation: True
+    initial_value: "menu_principal"
+    mappings:
+      - type: custom
+  numero_opcion:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: numero_opcion
+
 responses:
-  utter_bienvenida:
+  utter_saludar:
     - text: |
         ¡Hola! Soy Spotty, tu asistente digital. Estoy aquí para ayudarte sin interrupciones.
         Selecciona lo que necesites 👇
-# menu principal
+
+  # Menu principal
   utter_menu_principal:
     - text: |
         🧩 Opción 1: Tengo un problema con mi servicio 
@@ -24,7 +45,8 @@ responses:
         🛠 Opción 3: Agendar o cambiar visita
         📱 Opción 4: Celular o energía
         🗣 Opción 5: Otro asunto
-# submenu opciones
+
+  # Submenus
   utter_opcion_problemas:
     - text: |
         🧩 Problemas con mi servicio
@@ -33,6 +55,7 @@ responses:
         3. 💸 Ya pagué pero sigue sin servicio
         4. 🔧 Vino el técnico pero no quedó bien
         5. 🔙 Regresar al menú principal
+
   utter_opcion_pagos:
     - text: |
         💸 Pagos y facturación
@@ -41,6 +64,7 @@ responses:
         3. 🧾 Solicitar código o forma de pago
         4. ♻️ Quiero reactivar mi servicio
         5. 🔙 Regresar al menú principal
+
   utter_opcion_agendar:
     - text: |
         1. 🧰 Quiero que venga un técnico
@@ -48,6 +72,7 @@ responses:
         3. ❌ Quiero cancelar mi visita
         4. 📅 Confirmar mi cita
         5. 🔙 Regresar al menú principal
+
   utter_opcion_celular:
     - text: |
         📱 Celular o energía
@@ -55,6 +80,7 @@ responses:
         2. 🔋 Problemas de energía o cortes
         3. 📲 Quiero cambiar mi plan de celular
         4. 🔙 Regresar al menú principal
+
   utter_opcion_otros:
     - text: |
         1. 🛑 Cancelar mi servicio
@@ -62,6 +88,79 @@ responses:
         3. ℹ️ Saber más sobre SpotUno
         4. 💬 Dejar un comentario o sugerencia
         5. 🔙 Regresar al menú principal
+
   utter_despedida:
     - text: Hasta luego, vuelve pronto!!
-      
+
+  utter_submenu_problemas_1:
+    - text: |
+        1. Verificar que el modem esté prendido.
+        2. Reiniciar Modem. 
+        3. Verificar que estén los cables conectados.
+
+  utter_submenu_problemas_2:
+    - text: |
+        1. Verificar que el modem esté prendido.
+        2. Reiniciar Modem. 
+        3. Verificar que estén los cables conectados.
+
+  utter_submenu_problemas_3:
+    - text: Verificando tu pago...
+
+  utter_submenu_problemas_4:
+    - text: Verificaremos la visita técnica anterior...
+
+  utter_submenu_pagos_1:
+    - text: Validando si tu pago ha sido recibido...
+
+  utter_submenu_pagos_2:
+    - text: Consultando tu deuda actual...
+
+  utter_submenu_pagos_3:
+    - text: Generando forma de pago...
+
+  utter_submenu_pagos_4:
+    - text: Número de cuenta utilizado en el anterior servicio
+
+  utter_submenu_agendar_1:
+    - text: Agendando visita técnica...
+
+  utter_submenu_agendar_2:
+    - text: Ingresa número de cuenta
+
+  utter_submenu_agendar_3:
+    - text: Cancelando visita...
+
+  utter_submenu_agendar_4:
+    - text: Confirmando cita...
+
+  utter_submenu_celular_1:
+    - text: Te comparto los planes celulares disponibles
+
+  utter_submenu_celular_2:
+    - text: Te comparto los planes de energía disponibles
+
+  utter_submenu_celular_3:
+    - text: En qué consisten nuestros servicios...
+
+  utter_submenu_celular_4:
+    - text: ¿Cuál es el error que presentas?
+
+  utter_submenu_otros_1:
+    - text: Estamos procesando tu solicitud de cancelación
+
+  utter_submenu_otros_2:
+    - text: ¿Cuál es tu queja con nuestro servicio?
+
+  utter_submenu_otros_3:
+    - text: Mensaje de información sobre la empresa
+
+  utter_submenu_otros_4:
+    - text: Deja aquí tu comentario o sugerencia
+
+actions:
+  - action_elegir_opcion
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

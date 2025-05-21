@@ -1,0 +1,16 @@
+{
+  "0": "despedida",
+  "1": "elegir_opcion",
+  "2": "opcion_agendar",
+  "3": "opcion_otros",
+  "4": "opcion_pagos",
+  "5": "opcion_problemas",
+  "6": "regresar_menu",
+  "7": "saludar",
+  "8": "submenu_ pagos",
+  "9": "submenu_agendar",
+  "10": "submenu_celular",
+  "11": "submenu_otros",
+  "12": "submenu_pagos",
+  "13": "submenu_problemas"
+}

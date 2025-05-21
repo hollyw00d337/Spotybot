@@ -1,12 +1,6 @@
 version: "3.1"
 
 stories:
-  - story: Usuario saluda
-    steps:
-      - intent: saludar
-      - action: utter_bienvenida
-      - action: utter_menu_principal
-
   - story: Usuario elige opción problemas
     steps:
       - intent: opcion_problemas
@@ -26,7 +20,33 @@ stories:
     steps:
       - intent: opcion_otros
       - action: utter_opcion_otros
+
   - story: Regresar al menu principal desde cualquier punto
     steps:
       - intent: regresar_menu
       - action: utter_menu_principal
+
+  - story: Submenu agendar
+    steps:
+      - intent: submenu_agendar
+      - action: utter_submenu_agendar_1
+
+  - story: Submenu celular
+    steps:
+      - intent: submenu_celular
+      - action: utter_submenu_celular_1
+
+  - story: Submenu otros
+    steps:
+      - intent: submenu_otros
+      - action: utter_submenu_otros_1
+
+  - story: Submenu pagos
+    steps:
+      - intent: submenu_pagos
+      - action: utter_submenu_pagos_1
+
+  - story: Submenu problemas
+    steps:
+      - intent: submenu_problemas
+      - action: utter_submenu_problemas_1

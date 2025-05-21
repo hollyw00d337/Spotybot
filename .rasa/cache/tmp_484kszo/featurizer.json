@@ -1,0 +1,83 @@
+{
+  "type": "MaxHistoryTrackerFeaturizer",
+  "state_featurizer": {
+    "action_texts": [],
+    "entity_tag_specs": [],
+    "feature_states": {
+      "intent": {
+        "back": 0,
+        "despedida": 1,
+        "elegir_opcion": 2,
+        "nlu_fallback": 3,
+        "opcion_agendar": 4,
+        "opcion_otros": 5,
+        "opcion_pagos": 6,
+        "opcion_problemas": 7,
+        "out_of_scope": 8,
+        "regresar_menu": 9,
+        "restart": 10,
+        "saludar": 11,
+        "session_start": 12,
+        "submenu_agendar": 13,
+        "submenu_celular": 14,
+        "submenu_otros": 15,
+        "submenu_pagos": 16,
+        "submenu_problemas": 17
+      },
+      "action_name": {
+        "action_listen": 0,
+        "action_restart": 1,
+        "action_session_start": 2,
+        "action_default_fallback": 3,
+        "action_deactivate_loop": 4,
+        "action_revert_fallback_events": 5,
+        "action_default_ask_affirmation": 6,
+        "action_default_ask_rephrase": 7,
+        "action_two_stage_fallback": 8,
+        "action_unlikely_intent": 9,
+        "action_back": 10,
+        "...": 11,
+        "action_extract_slots": 12,
+        "action_elegir_opcion": 13,
+        "utter_despedida": 14,
+        "utter_menu_principal": 15,
+        "utter_opcion_agendar": 16,
+        "utter_opcion_celular": 17,
+        "utter_opcion_otros": 18,
+        "utter_opcion_pagos": 19,
+        "utter_opcion_problemas": 20,
+        "utter_saludar": 21,
+        "utter_submenu_agendar_1": 22,
+        "utter_submenu_agendar_2": 23,
+        "utter_submenu_agendar_3": 24,
+        "utter_submenu_agendar_4": 25,
+        "utter_submenu_celular_1": 26,
+        "utter_submenu_celular_2": 27,
+        "utter_submenu_celular_3": 28,
+        "utter_submenu_celular_4": 29,
+        "utter_submenu_otros_1": 30,
+        "utter_submenu_otros_2": 31,
+        "utter_submenu_otros_3": 32,
+        "utter_submenu_otros_4": 33,
+        "utter_submenu_pagos_1": 34,
+        "utter_submenu_pagos_2": 35,
+        "utter_submenu_pagos_3": 36,
+        "utter_submenu_pagos_4": 37,
+        "utter_submenu_problemas_1": 38,
+        "utter_submenu_problemas_2": 39,
+        "utter_submenu_problemas_3": 40,
+        "utter_submenu_problemas_4": 41
+      },
+      "entities": {
+        "numero_opcion": 0
+      },
+      "slots": {
+        "estado_menu_0": 0,
+        "numero_opcion_0": 1
+      },
+      "active_loop": {}
+    }
+  },
+  "remove_duplicates": true,
+  "max_history": 5
+}

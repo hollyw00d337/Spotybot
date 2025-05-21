@@ -10,7 +10,6 @@ nlu:
     - buenas noches
     - buenas tardes
     - hola qué tal
-    - vamos
     - qué onda
     - buen día
 
@@ -19,83 +18,212 @@ nlu:
     - adiós
     - nos vemos
     - hasta luego
-    - buenas noches
     - chau
     - que tengas un buen día
     - hasta pronto
     - nos vemos luego
     - bye
 
-- intent: afirmación
+#declararemos los numeros como entidad, por eso llevaran []
+- intent: elegir_opcion
   examples: |
-    - sí
-    - claro
-    - por supuesto
-    - correcto
-    - suena bien
-    - exacto
-
-- intent: negación
+    - [1](numero_opcion)
+    - [2](numero_opcion)
+    - [3](numero_opcion)
+    - [4](numero_opcion)
+    - [5](numero_opcion)
+    - [uno](numero_opcion)
+    - [dos](numero_opcion)
+    - [tres](numero_opcion)
+    - [cuatro](numero_opcion)
+    - [cinco](numero_opcion)
+    - opcion [1](numero_opcion)
+    - opcion [2](numero_opcion)
+    - opcion [3](numero_opcion)
+    - opcion [4](numero_opcion)
+    - opcion [5](numero_opcion)
+    - opcion [uno](numero_opcion)
+    - opcion [dos](numero_opcion)
+    - opcion [tres](numero_opcion)
+    - opcion [cuatro](numero_opcion)
+    - opcion [cinco](numero_opcion)
+    - selecciono [1](numero_opcion)    
+    
+- intent: opcion_agendar
+  examples:  |
+    - 3
+    - Quiero agendar una cita
+    - Agendar
+    - Me gustaria hacer una cita
+- intent: opcion_otros
+  examples:  |
+    - 5
+    - Quiero otro asunto
+    - otros
+- intent: opcion_pagos
   examples: |
-    - no
-    - nunca
-    - no creo
-    - no me gusta
-    - de ninguna manera
-    - no realmente
-
-
-
-- intent: desafío_bot
-  examples: |
-    - ¿eres un bot?
-    - ¿eres humano?
-    - ¿estoy hablando con un bot?
-    - ¿estoy hablando con un humano?
-
 
 - intent: opcion_problemas
   examples: |
     - 1
+    - sin señal
+    - sin servicio
     - uno
-    - tengo un problema
-    - problemas con el servicio
-    - tengo fallas
-
-- intent: opcion_pagos
-  examples: |
-    - dos
-    - 2
-    - quiero pagar
-    - consultar cuenta
-    - verificar pago
-- intent: opcion_agendar
-  examples: |
-    - tres
-    - 3
-    - agendar tecnico
-    - agendar cita
-    - quiero un tecnico
-- intent: opcion_celular
-  examples: |
-    - cuatro
-    - 4
-    - energia
-    - celular
-- intent: opcion_otros
-  examples: |
-    - cinco
-    - 5
-    - informacion
-    - quiero saber mas
-    - otra consulta
-    r
 - intent: regresar_menu
   examples: |
-    - volver al inicio
-    - regresar al menú
-    - quiero el menú principal
     - regresar
-    - volver al menú
-    - ir al menú principal
+    - cinco
+    - 5
+- intent: submenu_agendar
+  examples: |
+    - 3
+    - tres
+    - agendar
+    - cambiar visita
+- intent: submenu_celular
+  examples: |
+    - 4
+    - cuatro
+    - celular
+    - energia
+- intent: submenu_otros
+  examples: |
+    - 5
+    - cinco
+    - otros
+    - mas informacion
+- intent: submenu_ pagos
+  examples: |
+    - 2
+    - dos
+    - pagos
+    - consulta
+- intent: submenu_problemas
+  examples: |
+    - 1
+    - problemas
+    - uno
+- intent: elegir_opcion
+  examples: |
+    - Quisiera seleccionar la opción 1 (problemas del servicio)
+    - Digito 2 en el menú principal para pagos
+    - Voy a presionar 3 para agendar una cita
+    - Selecciono la opción 4 para otros temas
+- intent: opcion_problemas
+  examples: |
+    - Tengo un problema con mi servicio de internet
+    - Necesito asistencia técnica con un problema
+    - Reportar un problema en mi cuenta
+    - ¿Puedo hablar con soporte por un problema?
+- intent: opcion_pagos
+  examples: |
+    - Quiero revisar mis pagos pendientes
+    - ¿Cómo puedo pagar mi factura?
+    - Necesito información sobre mis facturas
+    - Tengo dudas sobre un pago reciente
+- intent: opcion_agendar
+  examples: |
+    - Me gustaría agendar una cita
+    - Deseo programar una llamada
+    - Necesito reservar una cita con atención al cliente
+    - ¿Cómo puedo programar una cita?
+- intent: opcion_otros
+  examples: |
+    - Tengo una consulta de otro tipo
+    - Quiero hablar de otro tema
+    - Necesito ayuda con otro asunto
+    - ¿Hay otras opciones disponibles?
+- intent: regresar_menu
+  examples: |
+    - Volver al menú principal
+    - Regresar al inicio
+    - Menú principal, por favor
+    - Empezar de nuevo
+    - Quiero regresar
+    - Volver atrás
+- intent: submenu_problemas
+  examples: |
+    - En el menú de problemas, presiono la opción 1
+    - Selecciono 2 en la lista de problemas
+    - Elijo 3 en el menú de problemas
+    - Marco la opción 4 en problemas
+- intent: submenu_pagos
+  examples: |
+    - En el menú de pagos, selecciono la opción 1
+    - Dentro de pagos, presiono 2
+    - Elijo 3 en la lista de pagos
+    - Selecciono la opción 4 en pagos
+- intent: submenu_agendar
+  examples: |
+    - En el menú de agendar, presiono la opción 1
+    - Dentro de agendar, elijo la opción 2
+    - Selecciono 3 en la lista de agendar
+    - Marco la opción 4 en agendar
+- intent: submenu_otros
+  examples: |
+    - En el menú de otros, selecciono la opción 1
+    - Dentro de otros, presiono 2
+    - Elijo 3 en el menú de otros
+    - Marco la opción 4 en otros
+- intent: submenu_celular
+  examples: |
+    - En el menú de celular, presiono la opción 1
+    - Dentro de celular, selecciono 2
+    - Opción 3 en el menú de celular
+    - Marco la opción 4 en el menú celular
+stories:
+- story: problemas_flow
+  steps:
+  - intent: opcion_problemas
+  - action: utter_submenu_problemas_1
+  - intent: submenu_problemas
+  - action: utter_submenu_problemas_2
+  - intent: submenu_problemas
+  - action: utter_submenu_problemas_3
+  - intent: submenu_problemas
+  - action: utter_submenu_problemas_4
+- story: pagos_flow
+  steps:
+  - intent: opcion_pagos
+  - action: utter_submenu_pagos_1
+  - intent: submenu_pagos
+  - action: utter_submenu_pagos_2
+  - intent: submenu_pagos
+  - action: utter_submenu_pagos_3
+  - intent: submenu_pagos
+  - action: utter_submenu_pagos_4
+- story: agendar_flow
+  steps:
+  - intent: opcion_agendar
+  - action: utter_submenu_agendar_1
+  - intent: submenu_agendar
+  - action: utter_submenu_agendar_2
+  - intent: submenu_agendar
+  - action: utter_submenu_agendar_3
+  - intent: submenu_agendar
+  - action: utter_submenu_agendar_4
+- story: otros_flow
+  steps:
+  - intent: opcion_otros
+  - action: utter_submenu_otros_1
+  - intent: submenu_otros
+  - action: utter_submenu_otros_2
+  - intent: submenu_otros
+  - action: utter_submenu_otros_3
+  - intent: submenu_otros
+  - action: utter_submenu_otros_4
+- story: celular_flow
+  steps:
+  - intent: opcion_otros
+  - action: utter_opcion_celular
+  - intent: submenu_celular
+  - action: utter_submenu_celular_1
+  - intent: submenu_celular
+  - action: utter_submenu_celular_2
+  - intent: submenu_celular
+  - action: utter_submenu_celular_3
+  - intent: submenu_celular
+  - action: utter_submenu_celular_4
+
+
 
