@@ -1,0 +1,97 @@
++version: "3.1"
+
+intents:
+  - saludar
+  - despedida
+  - elegir_opcion
+  - regresar_menu
+
+entities:
+  - numero_opcion
+
+slots:
+  estado_menu:
+    type: text
+    initial_value: "menu_principal"
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  numero_opcion:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: numero_opcion
+
+responses:
+  utter_saludar:
+    - text: |
+        ¡Hola! Soy Spotty, tu asistente digital. Estoy aquí para ayudarte sin interrupciones.
+        Selecciona lo que necesites 👇
+
+  utter_despedida:
+    - text: Hasta luego, vuelve pronto!!
+
+  # Menú principal
+  utter_menu_principal:
+    - text: |
+        🧩 Opción 1: Tengo un problema con mi servicio 
+        💸 Opción 2: Pagos y facturación
+        🛠 Opción 3: Agendar o cambiar visita
+        📱 Opción 4: Celular o energía
+        🗣 Opción 5: Otro asunto
+
+  # Submenús
+  utter_opcion_problemas:
+    - text: |
+        🧩 Problemas con mi servicio
+        1. 😰 No tengo señal en ningún dispositivo
+        2. 🐢 Está muy lento o intermitente
+        3. 💸 Ya pagué pero sigue sin servicio
+        4. 🔧 Vino el técnico pero no quedó bien
+        5. 🔙 Regresar al menú principal
+
+  utter_opcion_pagos:
+    - text: |
+        💸 Pagos y facturación
+        1. ✅ Validar si ya cayó mi pago
+        2. 💰 Consultar cuánto debo
+        3. 🧾 Solicitar código o forma de pago
+        4. ♻️ Quiero reactivar mi servicio
+        5. 🔙 Regresar al menú principal
+
+  utter_opcion_agendar:
+    - text: |
+        🛠 Agendar o cambiar visita
+        1. 🧰 Quiero que venga un técnico
+        2. 🚚 Quiero cambiar de domicilio
+        3. ❌ Quiero cancelar mi visita
+        4. 📅 Confirmar mi cita
+        5. 🔙 Regresar al menú principal
+
+  utter_opcion_celular:
+    - text: |
+        📱 Celular o energía
+        1. 📶 Problemas con mi señal móvil
+        2. 🔋 Problemas de energía o cortes
+        3. 📲 Quiero cambiar mi plan de celular
+        4. 🔙 Regresar al menú principal
+
+  utter_opcion_otros:
+    - text: |
+        🗣 Otro asunto
+        1. 🛑 Cancelar mi servicio
+        2. 😠 Quejarme del servicio
+        3. ℹ️ Saber más sobre SpotUno
+        4. 💬 Dejar un comentario o sugerencia
+        5. 🔙 Regresar al menú principal
+
+
+
+actions:
+  - action_elegir_opcion
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
