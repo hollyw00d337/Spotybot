@@ -65,13 +65,13 @@ responses:
         4. ♻️ Quiero reactivar mi servicio
         5. 🔙 Regresar al menú principal
 
-  utter_opcion_agendar:
-    - text: |
-        1. 🧰 Quiero que venga un técnico
-        2. 🚚 Quiero cambiar de domicilio
-        3. ❌ Quiero cancelar mi visita
-        4. 📅 Confirmar mi cita
-        5. 🔙 Regresar al menú principal
+#  utter_opcion_agendar:
+#    - text: |
+#        1. 🧰 Quiero que venga un técnico
+#        2. 🚚 Quiero cambiar de domicilio
+#        3. ❌ Quiero cancelar mi visita
+#        4. 📅 Confirmar mi cita
+#        5. 🔙 Regresar al menú principal
 
   utter_opcion_celular:
     - text: |
@@ -122,8 +122,8 @@ responses:
   utter_submenu_pagos_4:
     - text: Número de cuenta utilizado en el anterior servicio
 
-  utter_submenu_agendar_1:
-    - text: Agendando visita técnica...
+  #utter_submenu_agendar_1:
+  #  - text: Agendando visita técnica...
 
   utter_submenu_agendar_2:
     - text: Ingresa número de cuenta

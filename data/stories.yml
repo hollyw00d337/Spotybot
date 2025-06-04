@@ -13,8 +13,29 @@ stories:
 
   - story: Usuario elige agendar visita
     steps:
-      - intent: opcion_agendar
-      - action: utter_opcion_agendar
+    - intent: greet
+    - action: utter_greet
+    - intent: opcion_agendar
+    - action: simple_pizza_form
+    - active_loop: simple_pizza_form
+    - slot_was_set:
+        - requested_slot: nombre_usuario
+    - slot_was_set:
+        - nombre_usuario: s
+    - slot_was_set:
+        - requested_slot: num_servicio
+    - intent: stop
+    - action: utter_ask_continue
+    - intent: affirm
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: utter_submit
+    - action: utter_pizza_slots
+    - action: action_save_pizza_to_pdf
+    - intent: goodbye
+    - action: utter_goodbye
 
   - story: Usuario elige otros
     steps:
@@ -50,7 +71,7 @@ stories:
     steps:
       - intent: submenu_problemas
       - action: utter_submenu_problemas_1
-      
+
   - story: problemas_flow
     steps:
     - intent: opcion_problemas

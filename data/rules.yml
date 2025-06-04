@@ -20,3 +20,8 @@ rules:
     steps:
       - intent: regresar_menu
       - action: utter_menu_principal
+
+  - rule: Activate Pizza Form
+    steps:
+      - intent: opcion_agendar
+      - action: simple_pizza_form
