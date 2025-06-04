@@ -1,0 +1,124 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - yo
+    - hello world
+    - hi there
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - thanks, goodbye
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - /affirm
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: stop
+  examples: |
+    - stop
+    - nevermind
+    - please stop
+    - i want to stop
+    - stop the form
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: agendar_cita
+  examples: |
+    - quiero agendar una cita
+    - me gustaria agendar una cita
+    - para agendar una cita
+    - como puedo agendar una cita
+    - quiero pedir una cita
+- intent: inform
+  examples: |
+    - yo me llamo [oscar](nombre_usuario)
+    - mi nombre es [omar](nombre_usuario)
+    - [angel](nombre_usuario)
+    - [david](nombre_usuario)
+    - [kevin](nombre_usuario)
+    - [daniel](nombre_usuario)
+    - [1234567](num_servicio)
+    - numero de servicio [8720817](num_servicio)
+    - [1146490](num_servicio) servicio
+    - [dayana](nombre_usuario)
+    - [3533801](num_servicio)
+    - nombre: [anna](nombre_usuario)
+    - [0036413](num_servicio)
+    - [7654309](num_servicio)
+    - [1357924](num_servicio)
+    - [8546098](num_servicio)
+    - el nombre es: [antonio](nombre_usuario)
+    - [8765496](num_servicio)
+    - [1231298](num_servicio)

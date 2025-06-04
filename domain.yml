@@ -1,0 +1,70 @@
+version: '3.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- agendar_cita
+- greet
+- inform
+- goodbye
+- affirm
+- stop
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- request_pizza_form
+entities:
+- nombre_usuario
+- num_servicio
+slots:
+  nombre_usuario:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: nombre_usuario
+  num_servicio:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: num_servicio
+forms:
+  simple_pizza_form:
+    required_slots:
+      - nombre_usuario
+      - num_servicio
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_submit:
+  - text: Tu cita ah sido agendada con exito.!!!
+  utter_pizza_slots:
+  - text: A nombre de {nombre_usuario} con numero de servicio {num_servicio}
+  utter_ask_continue:
+  - text: Are you sure you want to stop the form?
+  utter_ask_nombre_usuario:
+  #- text: What size would you like your pizza to be?
+  - text: ¿Cual es tu nombre?
+  utter_ask_num_servicio:
+  - text: ¿cual es tu numero de servicio?
+actions:
+- utter_ask_continue
+- utter_goodbye
+- utter_greet
+- utter_pizza_slots
+- utter_submit
+- validate_simple_pizza_form
+- action_save_pizza_to_pdf
