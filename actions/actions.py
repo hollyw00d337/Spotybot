@@ -6,6 +6,9 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 from datetime import datetime
 from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import cm
+from PIL import Image
 import os
 
 ALLOWED_PIZZA_SIZES = ["small", "medium", "large", "extra-large", "extra large", "s", "m", "l", "xl"]
@@ -56,7 +59,18 @@ class ActionSavePizzaToPDF(Action):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[EventType]:
-        
+        nombre_imagen = os.path.join(os.path.dirname(__file__), "person.png")
+
+        # Función para convertir PNG con transparencia a imagen con fondo blanco
+        def convertir_imagen_sin_transparencia(imagen_path):
+            img = Image.open(imagen_path).convert("RGBA")
+            fondo_blanco = Image.new("RGBA", img.size, (255, 255, 255, 255))  # blanco opaco
+            fondo_blanco.paste(img, mask=img.split()[3])  # pegar usando canal alpha como máscara
+            # Guardar temporal sin transparencia
+            temporal_path = "temp_no_transparencia.png"
+            fondo_blanco.convert("RGB").save(temporal_path, "PNG")
+            return temporal_path
+
         nombre_usuario = tracker.get_slot("nombre_usuario")
         num_servicio = tracker.get_slot("num_servicio")
 
@@ -74,12 +88,58 @@ class ActionSavePizzaToPDF(Action):
 
         # Crear PDF
         c = canvas.Canvas(filepath)
-        c.setFont("Helvetica", 12)
-        c.drawString(100, 750, f"Cita programada")
-        c.drawString(100, 730, f"A nombre de: {nombre_usuario}")
-        c.drawString(100, 710, f"Con numero de servicio: {num_servicio}")
-        c.save()
+        ancho, alto = A4
+        titulo = "SpotUno"
+        subtitulo = "Disfruta de navegar con la mejor velocidad"
+        contenido1 = f"A nombre de {nombre_usuario}"
+        contenido2 = f"Con numero de servicio: {num_servicio}"
+        contenido3 = "Cita agendada para el dia Lunes 25 de Mayo a las 10:25 a.m."
+        despedida = "Encantados de atenderte. ¡Hasta pronto!"
 
-        dispatcher.utter_message(text=f"Your order has been saved as {filename}.")
+        y = alto - 2*cm
+        
+        c.setFont("Helvetica-Bold", 20)
+        c.drawCentredString(ancho / 2, y, titulo)
+
+        y -= 1.5*cm
+        c.setFont("Helvetica", 14)
+        c.drawCentredString(ancho / 2, y, subtitulo)
+        y -= 2*cm
+        c.setFont("Helvetica", 12)
+        c.drawString(2*cm, y, contenido1)
+
+        y -= 1.5*cm
+        c.drawString(2*cm, y, contenido2)
+
+        y -= 1.5*cm
+        c.drawString(2*cm, y, contenido3)
+
+        y -= 3*cm
+        c.setFont("Helvetica-Oblique", 12)
+        c.drawCentredString(ancho / 2, y, despedida)
+
+        # Convertir imagen para quitar transparencia
+        imagen_sin_transparencia = convertir_imagen_sin_transparencia(nombre_imagen)
+
+        # Cargar imagen para dimensiones
+        img = Image.open(imagen_sin_transparencia)
+        ancho_img, alto_img = img.size
+
+        ancho_deseado = 10 * cm
+        alto_deseado = (ancho_deseado / ancho_img) * alto_img
+
+        x_imagen = (ancho - ancho_deseado) / 2
+        y_imagen = 1.5 * cm
+
+        c.drawImage(imagen_sin_transparencia, x_imagen, y_imagen, ancho_deseado, alto_deseado)
+
+      #  c.drawString(100, 750, f"Cita programada")
+      #  c.drawString(100, 730, f"A nombre de: {nombre_usuario}")
+      #  c.drawString(100, 710, f"Con numero de servicio: {num_servicio}")
+        c.save()
+        if os.path.exists(imagen_sin_transparencia):
+            os.remove(imagen_sin_transparencia)
+
+        dispatcher.utter_message(text=f"Recoge aqui el ticket de tu cita {filename}.")
 
         return []
