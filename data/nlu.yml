@@ -171,6 +171,24 @@ nlu:
     - Dentro de celular, selecciono 2
     - Opción 3 en el menú de celular
     - Marco la opción 4 en el menú celular
-
-
-
+- intent: inform
+  examples: |
+    - yo me llamo [oscar](nombre_usuario)
+    - mi nombre es [omar](nombre_usuario)
+    - [angel](nombre_usuario)
+    - [david](nombre_usuario)
+    - [kevin](nombre_usuario)
+    - [daniel](nombre_usuario)
+    - [1234567](num_servicio)
+    - numero de servicio [8720817](num_servicio)
+    - [1146490](num_servicio) servicio
+    - [dayana](nombre_usuario)
+    - [3533801](num_servicio)
+    - nombre: [anna](nombre_usuario)
+    - [0036413](num_servicio)
+    - [7654309](num_servicio)
+    - [1357924](num_servicio)
+    - [8546098](num_servicio)
+    - el nombre es: [antonio](nombre_usuario)
+    - [8765496](num_servicio)
+    - [1231298](num_servicio)

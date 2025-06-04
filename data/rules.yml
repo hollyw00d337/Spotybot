@@ -25,3 +25,15 @@ rules:
     steps:
       - intent: opcion_agendar
       - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+  - rule: Submit Pizza Form and save to PDF
+    condition:
+      - active_loop: simple_pizza_form
+    steps:
+    - action: simple_pizza_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: utter_submit
+    - action: utter_pizza_slots
+    - action: action_save_pizza_to_pdf

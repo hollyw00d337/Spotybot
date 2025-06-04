@@ -94,8 +94,8 @@ stories:
     - action: utter_submenu_pagos_4
   - story: agendar_flow
     steps:
-    - intent: opcion_agendar
-    - action: utter_submenu_agendar_1
+    #- intent: opcion_agendar
+    #- action: utter_submenu_agendar_1
     - intent: submenu_agendar
     - action: utter_submenu_agendar_2
     - intent: submenu_agendar

@@ -14,9 +14,12 @@ intents:
   - submenu_agendar
   - submenu_otros
   - submenu_celular
+  - inform
 
 entities:
   - numero_opcion
+  - nombre_usuario
+  - num_servicio
 
 slots:
   estado_menu:
@@ -31,6 +34,23 @@ slots:
       - type: from_entity
         entity: numero_opcion
 
+  nombre_usuario:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: nombre_usuario
+  num_servicio:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: num_servicio
+forms:
+  simple_pizza_form:
+    required_slots:
+      - nombre_usuario
+      - num_servicio
 responses:
   utter_saludar:
     - text: |
@@ -55,6 +75,9 @@ responses:
         3. 💸 Ya pagué pero sigue sin servicio
         4. 🔧 Vino el técnico pero no quedó bien
         5. 🔙 Regresar al menú principal
+
+  utter_greet:
+  - text: Hey! How are you?
 
   utter_opcion_pagos:
     - text: |
@@ -157,10 +180,28 @@ responses:
 
   utter_submenu_otros_4:
     - text: Deja aquí tu comentario o sugerencia
-
+  utter_submit:
+  - text: Tu cita ah sido agendada con exito.!!!
+  utter_pizza_slots:
+  - text: A nombre de {nombre_usuario} con numero de servicio {num_servicio}
+  utter_ask_continue:
+  - text: Are you sure you want to stop the form?
+  utter_ask_nombre_usuario:
+  #- text: What size would you like your pizza to be?
+  - text: ¿Cual es tu nombre?
+  utter_ask_num_servicio:
+  - text: ¿cual es tu numero de servicio?
+  utter_submenu_agendar_1:
+    - text: "Aquí están las opciones para agendar tu servicio:"
+  utter_goodbye:
+    - text: "Adiós, ¡que tengas un buen día!"
 actions:
   - action_elegir_opcion
-
+  - validate_simple_pizza_form
+  - action_save_pizza_to_pdf
+  - utter_submit
+  - utter_greet
+  - utter_goodbye
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
