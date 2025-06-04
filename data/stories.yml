@@ -50,3 +50,56 @@ stories:
     steps:
       - intent: submenu_problemas
       - action: utter_submenu_problemas_1
+      
+  - story: problemas_flow
+    steps:
+    - intent: opcion_problemas
+    - action: utter_submenu_problemas_1
+    - intent: submenu_problemas
+    - action: utter_submenu_problemas_2
+    - intent: submenu_problemas
+    - action: utter_submenu_problemas_3
+    - intent: submenu_problemas
+    - action: utter_submenu_problemas_4
+  - story: pagos_flow
+    steps:
+    - intent: opcion_pagos
+    - action: utter_submenu_pagos_1
+    - intent: submenu_pagos
+    - action: utter_submenu_pagos_2
+    - intent: submenu_pagos
+    - action: utter_submenu_pagos_3
+    - intent: submenu_pagos
+    - action: utter_submenu_pagos_4
+  - story: agendar_flow
+    steps:
+    - intent: opcion_agendar
+    - action: utter_submenu_agendar_1
+    - intent: submenu_agendar
+    - action: utter_submenu_agendar_2
+    - intent: submenu_agendar
+    - action: utter_submenu_agendar_3
+    - intent: submenu_agendar
+    - action: utter_submenu_agendar_4
+  - story: otros_flow
+    steps:
+    - intent: opcion_otros
+    - action: utter_submenu_otros_1
+    - intent: submenu_otros
+    - action: utter_submenu_otros_2
+    - intent: submenu_otros
+    - action: utter_submenu_otros_3
+    - intent: submenu_otros
+    - action: utter_submenu_otros_4
+  - story: celular_flow
+    steps:
+    - intent: opcion_otros
+    - action: utter_opcion_celular
+    - intent: submenu_celular
+    - action: utter_submenu_celular_1
+    - intent: submenu_celular
+    - action: utter_submenu_celular_2
+    - intent: submenu_celular
+    - action: utter_submenu_celular_3
+    - intent: submenu_celular
+    - action: utter_submenu_celular_4
