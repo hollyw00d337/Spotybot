@@ -1,0 +1,18 @@
+{
+  "lookup": {
+    "eJyLri7OyS8ptlKoTi0uSUzJj89NzSu1Uog21DOIra2NBQC+9gtt": "action_listen",
+    "eJx9jEEOgCAMBL/SBxCjV75CDCHYAwm0hhYvhL+L0bO3nezsui6ZVSx0FA0H+4LULLhtWfcxDPSz4uVD1MQ0pTd4CgUtfJCTKNJ0f54MNME6u0TTVQt8xmfLWlnG2G9SizJQ": "utter_opcion_otros",
+    "eJyljbEKgDAMRH8lHyCia3+lSCmaoWCT0qQuxX+3oouLDm533Ls7W2VlFQMVRf3CLiIVA3bsh2nfO6gp4+b8rIGpQZdw5CMauM0aRJEa+7LUQRHMLQvUWDXAaT67rJnl66eoYnaPxp+z6QCUl1t4": "action_listen",
+    "eJx9jEEKgCAQRa8yB4iorVcRkSGHEHQMZ2oj3j2j1u3+47//bZNUVAw0EsVQfCY+Ddh1XlzvE7Sj0uVx01h4SG/wjJkMfJCiKPFwf54mOIXq6CIPVw2UY3u2uBMHrL27G7ZgMus=": "utter_opcion_agendar",
+    "eJyljcEKgDAMQ3+lHzBEr/sVkVFmkYF2snZehv/uRE8e9OAtIS9JX2SOKhYKieIY3UKcLfRd0w77bqCsiTaHXkPkCl3CMS5k4TZzECWu7MuSgSyUaha4smohrv7s4kQ8Yvp6yqqU3KPz73A4AKNQXUk=": "action_listen",
+    "eJx9zEEKgCAQBdCrzAEkautVJERqCEHHmBnbiHdPqnW7//mP75qkomKhoWjYi89I1YJbpnnt3UA7GS8fNo2FBnqDp5DRwldSFEUa9ufJQBXksUUaVi0wHowS+FG9rzeEXjKh": "utter_menu_principal",
+    "eJylzUEKhDAMBdCr5AAyjNteRaQEJ0igpiVJZ1O8u2V0rYvZ/fAf+VOzlN0CNDLHT44bSQ0wja/3vO8DtKL0jbg4Z+noDFFwowDXkdicpNubTwNUI+0dS7ceQGlVMtSfehqq7nTKWJRl4YLpv735APxrXNI=": "action_listen",
+    "eJx9zEEKwCAMBMCv5AFS2qtfEZFQcxA0FhN7Ef9eoT33tssO64bkqmJhkCjGGgpxt+CObfdzGhhXozvgqanyQm8IjIUsfCUnUeJlf54MdKG2tsTLqgXB3CO2Of0DW3EwHg==": "utter_bienvenida",
+    "eJydjUEKwzAMBL+iB4TSXv2VEIwa70HgyMWSczH5ewzpOYXedtlhZ+6Wi1ugDnNOJW7QFmh+PZ7LcUzUPxV75NWl6ICuEJU3BPqWLObQwd48TdQMdWyig/VAxrklrr8UzR01vgW6QyXxv5blBDQHVgs=": "utter_menu_principal",
+    "eJy1jUEKwzAMBL+iB4SSXv2VEIQa6yBwZGPJuZj8vS7tuYVCbrvssLN0S9ktQGdzihl31hZgud/m9Twn6KXygbS5ZB3QO6DSzgE+JYk562C/PE3QjOvYRAfrAYxSi1R/KZo7V3wI68Eqka60vJ6wVNFNCqV/TesTMLd9uQ==": "action_listen",
+    "eJx9jEEOgCAMBL/SBxCjV75iDEHtgQRaQosXwt/F6NnbTnZ21yaRVSw0FPUnu4RULazLNG+9G2i54OX8oYFpSG9w5BNa+CAGUaTh/jwZqIJldIGGqxY4H882F94jJi+9bzceqzPe": "utter_opcion_problemas",
+    "eJyljUEKhTAMRK+SA4jotlcRKVWzKLRJaVI3xbtb0d2H78LdDPNmZqoSWMVARVG3sY1IxcA09sN8HB3UlHG3blXP1KBbWHIRDTwmeFGkxv5Z6qAI5pZ5aqwa4LRe3ZR5CRidvH0VVcz2p/X1dD4BBHFgIg==": "action_listen",
+    "eJx9jEEKgCAQRa8yB5CorVeJELEhhJwRZ2wj3j2j1u3+47//1yYnq1hoKOp3dgmpWliXad56N9Bywcv5oJFpSG9w5BNa+OCMokjD/XkyUAXL6CINVy1wDs82+4Ol9+0GUcwyMw==": "utter_opcion_pagos",
+    "eJyljcEKgDAMQ3+lHyCi1/2KyBhaZDDbsXZehv/uRC9e9OAtIS/JUCSwioGCom5muyJlA0PfduO+N1Biws26ST1ThS5hya1o4DbBiyJV9mWpgSyYauapsmqA43R2o1tYvn6yKib7aPw5Gw9/Ulsh": "action_listen"
+  }
+}

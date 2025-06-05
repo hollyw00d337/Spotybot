@@ -1,0 +1,113 @@
+version: "3.1"
+
+nlu:
+- intent: saludar
+  examples: |
+    - hola
+    - hey
+    - qué tal
+    - buenos días
+    - buenas noches
+    - buenas tardes
+    - hola qué tal
+    - qué onda
+    - buen día
+
+- intent: despedida
+  examples: |
+    - adiós
+    - nos vemos
+    - hasta luego
+    - chau
+    - que tengas un buen día
+    - hasta pronto
+    - nos vemos luego
+    - bye
+
+#declararemos los numeros como entidad, por eso llevaran []
+- intent: elegir_opcion
+  examples: |
+    - [1](numero_opcion)
+    - [2](numero_opcion)
+    - [3](numero_opcion)
+    - [4](numero_opcion)
+    - [5](numero_opcion)
+    - opción [1](numero_opcion)
+    - opción [2](numero_opcion)
+    - opción [3](numero_opcion)
+    - opción [4](numero_opcion)
+    - opción [5](numero_opcion)
+    - selecciono [1](numero_opcion)
+    - selecciono [2](numero_opcion)
+    - selecciono [3](numero_opcion)
+    - selecciono [4](numero_opcion)
+    - selecciono [5](numero_opcion)
+    - elijo [1](numero_opcion)
+    - elijo [2](numero_opcion)
+    - elijo [3](numero_opcion)
+    - elijo [4](numero_opcion)
+    - elijo [5](numero_opcion)
+    - quiero la opción [1](numero_opcion)
+    - quiero la opción [2](numero_opcion)
+    - quiero la opción [3](numero_opcion)
+    - quiero la opción [4](numero_opcion)
+    - quiero la opción [5](numero_opcion)
+
+- intent: regresar_menu
+  examples: |
+    - regresar
+    - volver
+    - inicio
+    - menu principal
+- intent: no_funciona_el_mensaje_1
+  examples: |
+    - sigue sin funcionar
+    - no funciona
+    - no me funciona
+    - no me sirve
+    - sigue igual
+    - nada cambio
+    - sigo sin internet
+    - no me resolvio el problema
+    - no resolvio nada
+    - no sirvio
+    - no tengo señal todavia
+    - no veo cambios
+    - no paso nada
+- intent: dar_numero_cuenta
+  examples: |
+    - 103
+    - 123456
+    - Mi número de cuenta es 78910
+    - Es 456789
+    - 00112233
+- intent: inform
+  examples: |
+    - yo me llamo [oscar](nombre_usuario)
+    - mi nombre es [omar](nombre_usuario)
+    - mi nombre es [angel](nombre_usuario)
+    - mi nombre es [david](nombre_usuario)
+    - mi nombre es [kevin](nombre_usuario)
+    - mi nombre es [daniel](nombre_usuario)
+    - nombre: [anna](nombre_usuario)
+    - el nombre es: [antonio](nombre_usuario)
+    - soy [dayana](nombre_usuario)
+    - soy [oscar](nombre_usuario)
+    - mi número de servicio es [1234567](num_servicio)
+    - el número de servicio es [8720817](num_servicio)
+    - servicio [1146490](num_servicio)
+    - mi servicio es [3533801](num_servicio)
+    - número de servicio: [0036413](num_servicio)
+    - el número es [7654309](num_servicio)
+    - mi número es [1357924](num_servicio)
+    - el número de mi servicio es [8546098](num_servicio)
+    - el número de servicio es [8765496](num_servicio)
+    - mi número de servicio: [1231298](num_servicio)
+entities:
+  - numero_opcion
+
+
+
+
+
+

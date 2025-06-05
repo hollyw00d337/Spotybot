@@ -1,0 +1,242 @@
+version: "3.1"
+stories:
+
+- story: Saludo e inicio
+  steps:
+    - intent: saludar
+    - action: utter_saludar
+    - action: utter_menu_principal
+
+- story: Elegir opción 1 - Problemas con el servicio
+  steps:
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Submenú Problemas - Sin señal
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_problemas
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Submenú Problemas - Intermitencia
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_problemas
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+
+- story: Submenú Problemas - Ya pagué pero sin servicio
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_problemas
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "3"
+    - action: action_elegir_opcion
+
+- story: Submenú Problemas - Técnico no dejó bien
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_problemas
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "4"
+    - action: action_elegir_opcion
+
+- story: Elegir opción 2 - Pagos y facturación
+  steps:
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+
+- story: Submenú Pagos - Validar pago
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_pagos
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Submenú Pagos - Consultar cuanto debo
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_pagos
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+
+- story: Submenú Pagos - Solicitar codigo o forma de pago
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_pagos
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "3"
+    - action: action_elegir_opcion
+
+- story: Submenú Pagos - Quiero reactivar mi servicio
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_pagos
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "4"
+    - action: action_elegir_opcion
+
+- story: Elegir opción 3 - Pagos y facturación
+  steps:
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "3"
+    - action: action_elegir_opcion
+
+- story: Submenú Agenda - Quiero que venga un tecnico
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_agenda
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Submenú Agenda - Quiero cambiar de domicilio
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_agenda
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+
+- story: Submenú Agenda - Quiero cancelar mi visita
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_agenda
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "3"
+    - action: action_elegir_opcion
+
+- story: Submenú Agenda - Confirmar cita
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_agenda
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "4"
+    - action: action_elegir_opcion
+
+
+- story: Elegir opción 4 - Celular y energia
+  steps:
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "4"
+    - action: action_elegir_opcion
+
+- story: Submenú Celular - Quiero contratar un plan celular
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_celular
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Submenú Celular - Me interesa ahorrar luz con Spot Energy
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_celular
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+
+- story: Submenú Celular - Tengo dudas sobre estos servicios
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_celular
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "3"
+    - action: action_elegir_opcion
+
+- story: Submenú Celular - Ya soy cliente necesito soporte
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_celular
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "4"
+    - action: action_elegir_opcion
+
+- story: Elegir opción 5 - Otro asunto
+  steps:
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "5"
+    - action: action_elegir_opcion
+
+- story: Submenú otros - Cancelar mi servicio
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_otros
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Submenú otros - Quejarme del servicio
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_otros
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+
+- story: Submenú otros - Saber mas sobre Spotuno
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_otros
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "3"
+    - action: action_elegir_opcion
+
+- story: Submenú otros - Dejar un comentario o sugerencia
+  steps:
+    - slot_was_set:
+        - estado_menu: submenu_otros
+    - intent: elegir_opcion
+      entities:
+        - numero_opcion: "4"
+    - action: action_elegir_opcion
+
+- story: Regresar al menú principal desde cualquier submenú
+  steps:
+    - intent: regresar_menu
+    - slot_was_set:
+        - estado_menu: menu_principal
+    - action: utter_menu_principal
+
+- story: Problema no resuelto tras instrucciones basicas
+  steps:
+  - intent: elegir_opcion
+    entities: 
+    - numero_opcion: "1"
+  - action: action_elegir_opcion
+  - slot_was_set:
+      - solucion_branch: problemas_1
+  - intent: no_funciona_el_mensaje_1
+  - action: action_pedir_numero_cuenta

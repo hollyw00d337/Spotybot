@@ -1,0 +1,44 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"no_funciona_el_mensaje_1\"}}]": "action_pedir_numero_cuenta",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"no_funciona_el_mensaje_1\"}}, {\"prev_action\": {\"action_name\": \"action_pedir_numero_cuenta\"}, \"user\": {\"intent\": \"no_funciona_el_mensaje_1\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"regresar_menu\"}}]": "utter_menu_principal",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"regresar_menu\"}}, {\"prev_action\": {\"action_name\": \"utter_menu_principal\"}, \"user\": {\"intent\": \"regresar_menu\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"despedida\"}}]": "utter_despedida",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"despedida\"}}, {\"prev_action\": {\"action_name\": \"utter_despedida\"}, \"user\": {\"intent\": \"despedida\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"slots\": {\"estado_menu\": [1.0]}, \"user\": {\"intent\": \"elegir_opcion\"}}]": "action_elegir_opcion",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"slots\": {\"estado_menu\": [1.0]}, \"user\": {\"intent\": \"elegir_opcion\"}}, {\"prev_action\": {\"action_name\": \"action_elegir_opcion\"}, \"slots\": {\"estado_menu\": [1.0]}, \"user\": {\"intent\": \"elegir_opcion\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_agendar\"}}]": "simple_pizza_form",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_agendar\"}}, {\"active_loop\": {\"name\": \"simple_pizza_form\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}, \"user\": {\"intent\": \"opcion_agendar\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"saludar\"}}]": "utter_saludar",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"saludar\"}}, {\"prev_action\": {\"action_name\": \"utter_saludar\"}, \"user\": {\"intent\": \"saludar\"}}]": "utter_menu_principal",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"saludar\"}}, {\"prev_action\": {\"action_name\": \"utter_saludar\"}, \"user\": {\"intent\": \"saludar\"}}, {\"prev_action\": {\"action_name\": \"utter_menu_principal\"}, \"user\": {\"intent\": \"saludar\"}}]": "action_listen",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}}]": "utter_submit",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_submit\"}}]": "utter_pizza_slots",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_submit\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_pizza_slots\"}}]": "action_save_pizza_to_pdf",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_submit\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_pizza_slots\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"action_save_pizza_to_pdf\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [
+      "simple_pizza_form"
+    ],
+    "rules_for_loop_unhappy_path": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}}, {\"active_loop\": {\"name\": \"simple_pizza_form\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}, \"user\": {\"intent\": \"opcion_agendar\"}}]": "do_not_predict_loop_action"
+    },
+    "rules_not_in_stories": [
+      "predicting default action with intent back",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"despedida\"}}, {\"prev_action\": {\"action_name\": \"utter_despedida\"}, \"user\": {\"intent\": \"despedida\"}}]",
+      "predicting default action with intent session_start",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"opcion_agendar\"}}]",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}}]",
+      "predicting default action with intent restart",
+      "handling active loops and forms - simple_pizza_form",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_submit\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_pizza_slots\"}}]",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"despedida\"}}]",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_submit\"}}]",
+      "[{\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"simple_pizza_form\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_submit\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"utter_pizza_slots\"}}, {\"active_loop\": {\"name\": \"should_not_be_set\"}, \"prev_action\": {\"action_name\": \"action_save_pizza_to_pdf\"}}]",
+      "handling active loops and forms - simple_pizza_form - action_listen"
+    ]
+  }
+}

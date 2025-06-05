@@ -1,0 +1,7 @@
+{
+  "rule_only_slots": [
+    "esperando_numero_cuenta",
+    "numero_cuenta"
+  ],
+  "rule_only_loops": []
+}

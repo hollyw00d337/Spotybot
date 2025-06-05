@@ -1,0 +1,64 @@
+version: "3.1"
+
+nlu:
+- intent: saludar
+  examples: |
+    - hola
+    - hey
+    - qué tal
+    - buenos días
+    - buenas noches
+    - buenas tardes
+    - hola qué tal
+    - qué onda
+    - buen día
+
+- intent: despedida
+  examples: |
+    - adiós
+    - nos vemos
+    - hasta luego
+    - chau
+    - que tengas un buen día
+    - hasta pronto
+    - nos vemos luego
+    - bye
+
+#declararemos los numeros como entidad, por eso llevaran []
+- intent: elegir_opcion
+  examples: |
+    - [1](numero_opcion)
+    - [2](numero_opcion)
+    - [3](numero_opcion)
+    - [4](numero_opcion)
+    - [5](numero_opcion)
+    - [uno](numero_opcion)
+    - [dos](numero_opcion)
+    - [tres](numero_opcion)
+    - [cuatro](numero_opcion)
+    - [cinco](numero_opcion)
+    - opcion [1](numero_opcion)
+    - opcion [2](numero_opcion)
+    - opcion [3](numero_opcion)
+    - opcion [4](numero_opcion)
+    - opcion [5](numero_opcion)
+    - opcion [uno](numero_opcion)
+    - opcion [dos](numero_opcion)
+    - opcion [tres](numero_opcion)
+    - opcion [cuatro](numero_opcion)
+    - opcion [cinco](numero_opcion)
+
+- intent: regresar_menu
+  examples: |
+    - regresar
+    - volver
+    - inicio
+    - menu principal
+entities:
+  - numero_opcion
+
+
+
+
+
+
