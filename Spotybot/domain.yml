@@ -3,145 +3,159 @@ version: "3.1"
 intents:
   - saludar
   - despedida
-  - elegir_opcion
+  - seleccionar_opcion
+  - afirmar
+  - negar
   - regresar_menu
-  - no_funciona_el_mensaje_1
-  - inform
-  - opcion_agendar
+  - fallback
   - dar_numero_cuenta
+  - fecha_cita
 
 entities:
   - numero_opcion
-  - nombre_usuario
-  - num_servicio
+  - numero_cuenta
+  - fecha_cita
 
 slots:
   estado_menu:
     type: text
-    initial_value: "menu_principal"
+    initial_value: menu_principal
     influence_conversation: true
     mappings:
       - type: custom
-
-  numero_opcion:
-    type: text
-    influence_conversation: true
-    mappings:
-      - type: from_entity
-        entity: numero_opcion
-
-  solucion_branch:
-    type: text
-    influence_conversation: true
-    mappings: 
-      - type: custom
-
   numero_cuenta:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
-      - type: from_text
+      - type: from_entity
+        entity: numero_cuenta
+  fecha_cita:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: fecha_cita
 
-  esperando_numero_cuenta:
-    type: bool
-    influence_conversation: true
-    mappings:
-      - type: custom
-  nombre_usuario:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: nombre_usuario
-  num_servicio:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: num_servicio
+actions:
+  - action_elegir_opcion
+  - action_fallback
+  - action_guardar_cita_y_generar_ticket
+
 forms:
-  simple_pizza_form:
+  agendar_visita_form:
     required_slots:
-      - nombre_usuario
-      - num_servicio
-
+      - numero_cuenta
+      - fecha_cita
+ #
 responses:
   utter_saludar:
     - text: |
         ¡Hola! Soy Spotty, tu asistente digital. Estoy aquí para ayudarte sin interrupciones.
         Selecciona lo que necesites 👇
 
-  utter_despedida:
-    - text: Hasta luego, vuelve pronto!!
-
-  # Menú principal
   utter_menu_principal:
     - text: |
-        🧩 Opción 1: Tengo un problema con mi servicio 
-        💸 Opción 2: Pagos y facturación
-        🛠 Opción 3: Agendar o cambiar visita
-        📱 Opción 4: Celular o energía
-        🗣 Opción 5: Otro asunto
+        🧩 1. Problema con mi servicio
+        💸 2. Pagos y facturación
+        🛠 3. Agendar o cambiar visita
+        📱 4. Celular o energía
+        🗣 5. Otro asunto
 
-  # Submenús
   utter_opcion_problemas:
     - text: |
         🧩 Problemas con mi servicio
-        1. 😰 No tengo señal en ningún dispositivo
-        2. 🐢 Está muy lento o intermitente
-        3. 💸 Ya pagué pero sigue sin servicio
-        4. 🔧 Vino el técnico pero no quedó bien
-        5. 🔙 Regresar al menú principal
+        1. Sin señal
+        2. Intermitente
+        3. Ya pagué pero sin servicio
+        4. Técnico no dejó bien
+        5. Regresar al menú principal
 
   utter_opcion_pagos:
     - text: |
         💸 Pagos y facturación
-        1. ✅ Validar si ya cayó mi pago
-        2. 💰 Consultar cuánto debo
-        3. 🧾 Solicitar código o forma de pago
-        4. ♻️ Quiero reactivar mi servicio
-        5. 🔙 Regresar al menú principal
+        1. Validar pago
+        2. Consultar deuda
+        3. Solicitar forma de pago
+        4. Reactivar servicio
+        5. Regresar al menú principal
 
   utter_opcion_agendar:
     - text: |
         🛠 Agendar o cambiar visita
-        1. 🧰 Quiero que venga un técnico
-        2. 🚚 Quiero cambiar de domicilio
-        3. ❌ Quiero cancelar mi visita
-        4. 📅 Confirmar mi cita
-        5. 🔙 Regresar al menú principal
+        1. Agendar visita
+        2. Cambiar domicilio
+        3. Cancelar visita
+        4. Confirmar cita
+        5. Regresar al menú principal
 
   utter_opcion_celular:
     - text: |
         📱 Celular o energía
-        1. 📶 Problemas con mi señal móvil
-        2. 🔋 Problemas de energía o cortes
-        3. 📲 Quiero cambiar mi plan de celular
-        4. 🔙 Regresar al menú principal
+        1. Contratar plan celular
+        2. Ahorrar luz
+        3. Dudas servicios
+        4. Soporte
+        5. Regresar al menú principal
 
   utter_opcion_otros:
     - text: |
         🗣 Otro asunto
-        1. 🛑 Cancelar mi servicio
-        2. 😠 Quejarme del servicio
-        3. ℹ️ Saber más sobre SpotUno
-        4. 💬 Dejar un comentario o sugerencia
-        5. 🔙 Regresar al menú principal
-  utter_submit:
-    - text: "¡Gracias! Tu formulario ha sido enviado correctamente."
-    
-  utter_pizza_slots:
-    - text: |
-        Estos son los datos que registraste:
-        Nombre: {nombre_usuario}
-        Número de servicio: {num_servicio}
+        1. Cancelar servicio
+        2. Quejarme
+        3. Saber más
+        4. Comentario o sugerencia
+        5. Regresar al menú principal
 
-actions:
-  - action_elegir_opcion
-  - action_pedir_numero_cuenta
-  - action_save_pizza_to_pdf
-  - validate_simple_pizza_form
+  utter_solucion_problemas_1:
+    - text: "Por favor, verifica que el módem esté prendido y reinicia si es necesario."
+  utter_solucion_problemas_2:
+    - text: "Verifica tu conexión y reinicia el módem para mejorar la velocidad."
+  utter_solucion_problemas_3:
+    - text: "Tu pago está en proceso. Si ya pagaste, espera unos minutos o contacta soporte."
+  utter_solucion_problemas_4:
+    - text: "Generando nuevo reporte para que te contacten de soporte técnico."
 
+  utter_solucion_pagos_1:
+    - text: "Validando si tu pago ha sido recibido..."
+  utter_solucion_pagos_2:
+    - text: "Consultando tu deuda actual..."
+  utter_solucion_pagos_3:
+    - text: "Generando forma de pago..."
+  utter_solucion_pagos_4:
+    - text: "Reactivando servicio, por favor espera confirmación."
+
+  utter_solucion_agendar_1:
+    - text: "¿Para qué fecha deseas agendar tu visita? Por favor, proporciona tu número de cuenta."
+  utter_solucion_agendar_2:
+    - text: "Por favor, indica tu nuevo domicilio para actualizarlo."
+  utter_solucion_agendar_3:
+    - text: "Procesando la cancelación de tu visita."
+  utter_solucion_agendar_4:
+    - text: "Confirmando tu cita. ¿Te gustaría recibir detalles por correo?"
+
+  utter_solucion_celular_1:
+    - text: "Estos son los planes de celular disponibles. ¿Te gustaría más información?"
+  utter_solucion_celular_2:
+    - text: "Aquí tienes opciones para ahorrar energía con nuestros servicios."
+  utter_solucion_celular_3:
+    - text: "¿Qué dudas tienes sobre nuestros servicios de celular o energía?"
+  utter_solucion_celular_4:
+    - text: "¿En qué podemos ayudarte con tu equipo o servicio?"
+
+  utter_solucion_otros_1:
+    - text: "Procesaremos la cancelación de tu servicio. ¿Nos indicas tu número de cuenta?"
+  utter_solucion_otros_2:
+    - text: "Por favor, cuéntanos tu queja."
+  utter_solucion_otros_3:
+    - text: "SpotUno es una empresa líder en servicios digitales. ¿Quieres más información?"
+  utter_solucion_otros_4:
+    - text: "Déjanos tu comentario o sugerencia, ¡nos ayuda a mejorar!"
+
+  utter_fallback_custom:
+    - text: "No entendí tu mensaje. Puedes elegir una opción del menú escribiendo el número o palabra clave."
+
+  utter_contactar_soporte:
+    - text: "Lamento escuchar eso. Por favor comunicate al 614 399 00 92 para asistencia inmediata."
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
