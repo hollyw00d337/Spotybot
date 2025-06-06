@@ -1,113 +1,136 @@
 version: "3.1"
 
 nlu:
-- intent: saludar
-  examples: |
-    - hola
-    - hey
-    - qué tal
-    - buenos días
-    - buenas noches
-    - buenas tardes
-    - hola qué tal
-    - qué onda
-    - buen día
-
-- intent: despedida
-  examples: |
-    - adiós
-    - nos vemos
-    - hasta luego
-    - chau
-    - que tengas un buen día
-    - hasta pronto
-    - nos vemos luego
-    - bye
-
-#declararemos los numeros como entidad, por eso llevaran []
-- intent: elegir_opcion
+- intent: seleccionar_opcion
   examples: |
     - [1](numero_opcion)
     - [2](numero_opcion)
     - [3](numero_opcion)
     - [4](numero_opcion)
     - [5](numero_opcion)
+    - [uno](numero_opcion)
+    - [dos](numero_opcion)
+    - [tres](numero_opcion)
+    - [cuatro](numero_opcion)
+    - [cinco](numero_opcion)
     - opción [1](numero_opcion)
     - opción [2](numero_opcion)
     - opción [3](numero_opcion)
     - opción [4](numero_opcion)
     - opción [5](numero_opcion)
-    - selecciono [1](numero_opcion)
-    - selecciono [2](numero_opcion)
-    - selecciono [3](numero_opcion)
-    - selecciono [4](numero_opcion)
-    - selecciono [5](numero_opcion)
-    - elijo [1](numero_opcion)
-    - elijo [2](numero_opcion)
-    - elijo [3](numero_opcion)
-    - elijo [4](numero_opcion)
-    - elijo [5](numero_opcion)
-    - quiero la opción [1](numero_opcion)
-    - quiero la opción [2](numero_opcion)
-    - quiero la opción [3](numero_opcion)
-    - quiero la opción [4](numero_opcion)
-    - quiero la opción [5](numero_opcion)
+    - selecciono la [1](numero_opcion)
+    - selecciono la [2](numero_opcion)
+    - selecciono la [3](numero_opcion)
+    - selecciono la [4](numero_opcion)
+    - selecciono la [5](numero_opcion)
+    - elijo la [1](numero_opcion)
+    - elijo la [2](numero_opcion)
+    - elijo la [3](numero_opcion)
+    - elijo la [4](numero_opcion)
+    - elijo la [5](numero_opcion)
+    - quiero la [1](numero_opcion)
+    - quiero la [2](numero_opcion)
+    - quiero la [3](numero_opcion)
+    - quiero la [4](numero_opcion)
+    - quiero la [5](numero_opcion)
+    - selecciono [uno](numero_opcion)
+    - selecciono [dos](numero_opcion)
+    - selecciono [tres](numero_opcion)
+    - selecciono [cuatro](numero_opcion)
+    - selecciono [cinco](numero_opcion)
+    - elijo [uno](numero_opcion)
+    - elijo [dos](numero_opcion)
+    - elijo [tres](numero_opcion)
+    - elijo [cuatro](numero_opcion)
+    - elijo [cinco](numero_opcion)
+    - opción [uno](numero_opcion)
+    - opción [dos](numero_opcion)
+    - opción [tres](numero_opcion)
+    - opción [cuatro](numero_opcion)
+    - opción [cinco](numero_opcion)
+    - [problema con mi servicio](numero_opcion)
+    - [pagos y facturación](numero_opcion)
+    - [pagar](numero_opcion)
+    - [agendar o cambiar visita](numero_opcion)
+    - [celular o energía](numero_opcion)
+    - [celular](numero_opcion)
+    - [energía](numero_opcion)
+    - [otro asunto](numero_opcion)
+    - [queja](numero_opcion)
+    - [comentario o sugerencia](numero_opcion)
+    - [saber más](numero_opcion)
+
+    - quiero [pagar](numero_opcion)
+    - tengo un [problema con mi servicio](numero_opcion)
+    - quiero [agendar visita](numero_opcion)
+    - necesito [soporte técnico](numero_opcion)
+    - me interesa el [otro asunto](numero_opcion)
+
+
+- intent: saludar
+  examples: |
+    - hola
+    - buenos días
+    - buenas tardes
+    - buenas noches
+    - hey
+    - que tal
+    - holi
+    - buen día
+    - saludo
+
+- intent: despedida
+  examples: |
+    - adiós
+    - hasta luego
+    - nos vemos
+    - chau
+    - bye
+    - gracias, eso es todo
+    - me despido
+
+- intent: afirmar
+  examples: |
+    - sí
+    - claro
+    - correcto
+    - de acuerdo
+    - por supuesto
+    - exacto
+
+- intent: negar
+  examples: |
+    - no
+    - para nada
+    - negativo
+    - nunca
+    - no gracias
 
 - intent: regresar_menu
   examples: |
+    - volver al menú
+    - regresar al menú principal
+    - menú principal
     - regresar
     - volver
-    - inicio
-    - menu principal
+    - quiero volver al inicio
+
+- intent: fallback
+  examples: |
+    - ?
+    - no entendí
+    - puedes repetir
+    - qué dijiste
+    - repite por favor
+    - no comprendo
 - intent: no_funciona_el_mensaje_1
   examples: |
-    - sigue sin funcionar
     - no funciona
-    - no me funciona
-    - no me sirve
+    - sigue sin funcionar
+    - no sirvió
+    - no me ayudó
+    - no se resolvió
     - sigue igual
-    - nada cambio
-    - sigo sin internet
-    - no me resolvio el problema
-    - no resolvio nada
-    - no sirvio
-    - no tengo señal todavia
-    - no veo cambios
-    - no paso nada
-- intent: dar_numero_cuenta
-  examples: |
-    - 103
-    - 123456
-    - Mi número de cuenta es 78910
-    - Es 456789
-    - 00112233
-- intent: inform
-  examples: |
-    - yo me llamo [oscar](nombre_usuario)
-    - mi nombre es [omar](nombre_usuario)
-    - mi nombre es [angel](nombre_usuario)
-    - mi nombre es [david](nombre_usuario)
-    - mi nombre es [kevin](nombre_usuario)
-    - mi nombre es [daniel](nombre_usuario)
-    - nombre: [anna](nombre_usuario)
-    - el nombre es: [antonio](nombre_usuario)
-    - soy [dayana](nombre_usuario)
-    - soy [oscar](nombre_usuario)
-    - mi número de servicio es [1234567](num_servicio)
-    - el número de servicio es [8720817](num_servicio)
-    - servicio [1146490](num_servicio)
-    - mi servicio es [3533801](num_servicio)
-    - número de servicio: [0036413](num_servicio)
-    - el número es [7654309](num_servicio)
-    - mi número es [1357924](num_servicio)
-    - el número de mi servicio es [8546098](num_servicio)
-    - el número de servicio es [8765496](num_servicio)
-    - mi número de servicio: [1231298](num_servicio)
-entities:
-  - numero_opcion
-
-
-
-
-
-
+    - nada cambió
+    - nada sirvió
+    - no resolvió mi problema
