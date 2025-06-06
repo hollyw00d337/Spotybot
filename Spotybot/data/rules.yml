@@ -1,47 +1,35 @@
 version: "3.1"
+
 rules:
-  - rule: Saludo inicial muestra menú
-    steps:
-      - intent: saludar
-      - action: utter_saludar
-      - action: utter_menu_principal
 
-  - rule: Despedida
-    steps:
-      - intent: despedida
-      - action: utter_despedida
+- rule: Saludo e inicio
+  steps:
+    - intent: saludar
+    - action: utter_saludar
+    - action: utter_menu_principal
 
-  - rule: Elegir opción del menú
-    condition:
-      - slot_was_set:
-          - estado_menu: "menu_principal"
-    steps:
-      - intent: elegir_opcion
-      - action: action_elegir_opcion
+- rule: Selección de opción en cualquier menú
+  steps:
+    - intent: seleccionar_opcion
+    - action: action_elegir_opcion
 
-  - rule: Regresar al menú principal
-    steps:
-      - intent: regresar_menu
-      - action: utter_menu_principal
-
-  - rule: Pedir numero de cuenta
-    steps:
-      - intent: no_funciona_el_mensaje_1
-      - action: action_pedir_numero_cuenta
-  - rule: Activate Pizza Form
-    steps:
-      - intent: opcion_agendar
-      - action: simple_pizza_form
-      - active_loop: simple_pizza_form
-  #Reglas de la generacion del ticket
-  - rule: Submit Pizza Form and save to PDF
-    condition:
-      - active_loop: simple_pizza_form
-    steps:
-    - action: simple_pizza_form
-    - active_loop: null
+- rule: Regresar al menú principal
+  steps:
+    - intent: regresar_menu
+    - action: utter_menu_principal
     - slot_was_set:
-        - requested_slot: null
-    - action: utter_submit
-    - action: utter_pizza_slots
-    - action: action_save_pizza_to_pdf
+        - estado_menu: menu_principal
+
+- rule: Fallback personalizado
+  steps: 
+    - intent: fallback
+    - action: action_fallback
+- rule: Guardar cita y generar ticket
+  steps:
+    - active_loop: agendar_visita_form
+    - action: action_guardar_cita_y_generar_ticket
+
+- rule: Usuario dice que no funciono
+  steps: 
+  - intent: no_funciona
+  - action: utter_contactar_soporte
