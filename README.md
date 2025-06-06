@@ -1,2 +1,2 @@
-# Spottybot
-Bot de Spot Uno
+Version 1.10
+
