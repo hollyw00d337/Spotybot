@@ -8,64 +8,109 @@ nlu:
     - [3](numero_opcion)
     - [4](numero_opcion)
     - [5](numero_opcion)
-    - [uno](numero_opcion)
-    - [dos](numero_opcion)
-    - [tres](numero_opcion)
-    - [cuatro](numero_opcion)
-    - [cinco](numero_opcion)
     - opción [1](numero_opcion)
     - opción [2](numero_opcion)
     - opción [3](numero_opcion)
     - opción [4](numero_opcion)
     - opción [5](numero_opcion)
-    - selecciono la [1](numero_opcion)
-    - selecciono la [2](numero_opcion)
-    - selecciono la [3](numero_opcion)
-    - selecciono la [4](numero_opcion)
-    - selecciono la [5](numero_opcion)
+    - selecciono la opción [1](numero_opcion)
+    - selecciono la opción [2](numero_opcion)
+    - selecciono la opción [3](numero_opcion)
+    - selecciono la opción [4](numero_opcion)
+    - selecciono la opción [5](numero_opcion)
+    - quiero la opción [1](numero_opcion)
+    - quiero la opción [2](numero_opcion)
+    - quiero la opción [3](numero_opcion)
+    - quiero la opción [4](numero_opcion)
+    - quiero la opción [5](numero_opcion)
     - elijo la [1](numero_opcion)
     - elijo la [2](numero_opcion)
     - elijo la [3](numero_opcion)
     - elijo la [4](numero_opcion)
     - elijo la [5](numero_opcion)
-    - quiero la [1](numero_opcion)
-    - quiero la [2](numero_opcion)
-    - quiero la [3](numero_opcion)
-    - quiero la [4](numero_opcion)
-    - quiero la [5](numero_opcion)
-    - selecciono [uno](numero_opcion)
-    - selecciono [dos](numero_opcion)
-    - selecciono [tres](numero_opcion)
-    - selecciono [cuatro](numero_opcion)
-    - selecciono [cinco](numero_opcion)
-    - elijo [uno](numero_opcion)
-    - elijo [dos](numero_opcion)
-    - elijo [tres](numero_opcion)
-    - elijo [cuatro](numero_opcion)
-    - elijo [cinco](numero_opcion)
-    - opción [uno](numero_opcion)
-    - opción [dos](numero_opcion)
-    - opción [tres](numero_opcion)
-    - opción [cuatro](numero_opcion)
-    - opción [cinco](numero_opcion)
+    - mi opción es la [1](numero_opcion)
+    - mi opción es la [2](numero_opcion)
+    - mi opción es la [3](numero_opcion)
+    - mi opción es la [4](numero_opcion)
+    - mi opción es la [5](numero_opcion)
+    - selecciono el número [1](numero_opcion)
+    - selecciono el número [2](numero_opcion)
+    - selecciono el número [3](numero_opcion)
+    - selecciono el número [4](numero_opcion)
+    - selecciono el número [5](numero_opcion)
     - [problema con mi servicio](numero_opcion)
     - [pagos y facturación](numero_opcion)
-    - [pagar](numero_opcion)
     - [agendar o cambiar visita](numero_opcion)
     - [celular o energía](numero_opcion)
-    - [celular](numero_opcion)
-    - [energía](numero_opcion)
     - [otro asunto](numero_opcion)
-    - [queja](numero_opcion)
-    - [comentario o sugerencia](numero_opcion)
-    - [saber más](numero_opcion)
-
-    - quiero [pagar](numero_opcion)
-    - tengo un [problema con mi servicio](numero_opcion)
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+    - "5"
+    - "opción 1"
+    - "opción 2"
+    - "opción 3"
+    - "opción 4"
+    - "opción 5"
+    - "quiero la 1"
+    - "quiero la 2"
+    - "quiero la 3"
+    - "quiero la 4"
+    - "quiero la 5"
+    - "elijo 1"
+    - "elijo 2"
+    - "elijo 3"
+    - "elijo 4"
+    - "elijo 5"
+    - [problema con mi servicio](numero_opcion)
+    - [problemas con mi servicio](numero_opcion)
+    - tengo un [problema en mi servicio](numero_opcion)
+    - necesito ayuda en mi [problema de servicio](numero_opcion)
+    - [pagos y facturación](numero_opcion)
+    - necesito ayuda para [pagar](numero_opcion)
+    - quiero [pagar mi factura](numero_opcion)
+    - [agendar o cambiar visita](numero_opcion)
     - quiero [agendar visita](numero_opcion)
-    - necesito [soporte técnico](numero_opcion)
+    - necesito [cambiar mi cita](numero_opcion)
+    - [celular o energía](numero_opcion)
+    - [energía eléctrica](numero_opcion)
+    - quiero contratar un [plan celular](numero_opcion)
+    - [otro asunto](numero_opcion)
     - me interesa el [otro asunto](numero_opcion)
-
+    - necesito [asistencia en otro tema](numero_opcion)
+    - [problema](numero_opcion)
+    - tengo un [problema](numero_opcion)
+    - quiero resolver un [problema](numero_opcion)
+    - problemas técnicos
+    - ayuda con un [problema](numero_opcion)
+    - problemas tecnicos
+    - problema
+    - tengo problemas
+    - necesito ayuda con problemas tecnicos
+    - hay un problema con mi conexion
+    - estoy teniendo problemas con mi servicio
+    - ayuda con un [problema](numero_opcion)
+    - quiero resolver un [problema](numero_opcion)
+    - [pagar](numero_opcion)
+    - quiero [pagar](numero_opcion)
+    - necesito ayuda para [pagar](numero_opcion)
+    - quiero pagar mi factura
+    - quiero pagar mi cuenta
+    - quiero pagar
+    - cómo puedo pagar mi servicio
+    - ayuda con pagos
+    - consulta sobre pagos
+    - "No tengo señal en mi dispositivo."
+    - "Mi conexión a internet está fallando."
+    - "¿Por qué no tengo servicio?"
+    - "Me quedé sin señal de celular."
+    - "Mi red está caída."
+    - "Estoy teniendo problemas de conexión."
+    - "Se perdió la señal de mi internet."
+    - "Mi servicio no funciona correctamente."
+    - "Tengo problemas con la cobertura."
+    - "El internet está muy lento o no carga."
 
 - intent: saludar
   examples: |
