@@ -16,6 +16,20 @@ stories:
         - numero_opcion: "2"
     - action: action_elegir_opcion
 
+- story: Flujo con palabras clave
+  steps:
+    - intent: saludar
+    - action: utter_saludar
+    - action: utter_menu_principal
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "problema con mi servicio"
+    - action: action_elegir_opcion
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "sin señal"
+    - action: action_elegir_opcion
+
 - story: Regresar al menú principal desde un submenú
   steps:
     - intent: seleccionar_opcion
@@ -25,3 +39,39 @@ stories:
     - intent: regresar_menu
     - action: utter_menu_principal
 
+- story: Regresar al menú principal desde cualquier estado
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: regresar_menu
+    - action: utter_menu_principal
+
+- story: Manejo de fallback
+  steps:
+    - intent: fallback
+    - action: action_fallback
+    - action: action_listen
+
+- story: Flujo de formulario para agendar visita
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "3"
+    - action: action_elegir_opcion
+    - active_loop: agendar_visita_form
+    - slot_was_set:
+        - numero_cuenta: "1234567890"
+    - slot_was_set:
+        - fecha_cita: "2025-06-10"
+    - action: action_guardar_cita_y_generar_ticket
+
+- story: Usuario indica que no funcionó
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: no_funciona_el_mensaje_1
+    - action: utter_contactar_soporte
