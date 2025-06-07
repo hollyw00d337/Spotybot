@@ -1,181 +1,182 @@
-version: "3.1"
+from rasa_sdk import Action, Tracker, FormValidationAction
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet, EventType
+from rasa_sdk.forms import FormValidationAction
+from typing import List, Dict, Any, Text, Optional
+from rasa_sdk.types import DomainDict
+from datetime import datetime
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import cm
+from PIL import Image
+import os
 
-nlu:
-- intent: seleccionar_opcion
-  examples: |
-    - [1](numero_opcion)
-    - [2](numero_opcion)
-    - [3](numero_opcion)
-    - [4](numero_opcion)
-    - [5](numero_opcion)
-    - opción [1](numero_opcion)
-    - opción [2](numero_opcion)
-    - opción [3](numero_opcion)
-    - opción [4](numero_opcion)
-    - opción [5](numero_opcion)
-    - selecciono la opción [1](numero_opcion)
-    - selecciono la opción [2](numero_opcion)
-    - selecciono la opción [3](numero_opcion)
-    - selecciono la opción [4](numero_opcion)
-    - selecciono la opción [5](numero_opcion)
-    - quiero la opción [1](numero_opcion)
-    - quiero la opción [2](numero_opcion)
-    - quiero la opción [3](numero_opcion)
-    - quiero la opción [4](numero_opcion)
-    - quiero la opción [5](numero_opcion)
-    - elijo la [1](numero_opcion)
-    - elijo la [2](numero_opcion)
-    - elijo la [3](numero_opcion)
-    - elijo la [4](numero_opcion)
-    - elijo la [5](numero_opcion)
-    - mi opción es la [1](numero_opcion)
-    - mi opción es la [2](numero_opcion)
-    - mi opción es la [3](numero_opcion)
-    - mi opción es la [4](numero_opcion)
-    - mi opción es la [5](numero_opcion)
-    - selecciono el número [1](numero_opcion)
-    - selecciono el número [2](numero_opcion)
-    - selecciono el número [3](numero_opcion)
-    - selecciono el número [4](numero_opcion)
-    - selecciono el número [5](numero_opcion)
-    - [problema con mi servicio](numero_opcion)
-    - [pagos y facturación](numero_opcion)
-    - [agendar o cambiar visita](numero_opcion)
-    - [celular o energía](numero_opcion)
-    - [otro asunto](numero_opcion)
-    - "1"
-    - "2"
-    - "3"
-    - "4"
-    - "5"
-    - "opción 1"
-    - "opción 2"
-    - "opción 3"
-    - "opción 4"
-    - "opción 5"
-    - "quiero la 1"
-    - "quiero la 2"
-    - "quiero la 3"
-    - "quiero la 4"
-    - "quiero la 5"
-    - "elijo 1"
-    - "elijo 2"
-    - "elijo 3"
-    - "elijo 4"
-    - "elijo 5"
-    - [problema con mi servicio](numero_opcion)
-    - [problemas con mi servicio](numero_opcion)
-    - tengo un [problema en mi servicio](numero_opcion)
-    - necesito ayuda en mi [problema de servicio](numero_opcion)
-    - [pagos y facturación](numero_opcion)
-    - necesito ayuda para [pagar](numero_opcion)
-    - quiero [pagar mi factura](numero_opcion)
-    - [agendar o cambiar visita](numero_opcion)
-    - quiero [agendar visita](numero_opcion)
-    - necesito [cambiar mi cita](numero_opcion)
-    - [celular o energía](numero_opcion)
-    - [energía eléctrica](numero_opcion)
-    - quiero contratar un [plan celular](numero_opcion)
-    - [otro asunto](numero_opcion)
-    - me interesa el [otro asunto](numero_opcion)
-    - necesito [asistencia en otro tema](numero_opcion)
-    - [problema](numero_opcion)
-    - tengo un [problema](numero_opcion)
-    - quiero resolver un [problema](numero_opcion)
-    - problemas técnicos
-    - ayuda con un [problema](numero_opcion)
-    - problemas tecnicos
-    - problema
-    - tengo problemas
-    - necesito ayuda con problemas tecnicos
-    - hay un problema con mi conexion
-    - estoy teniendo problemas con mi servicio
-    - ayuda con un [problema](numero_opcion)
-    - quiero resolver un [problema](numero_opcion)
-    - [pagar](numero_opcion)
-    - quiero [pagar](numero_opcion)
-    - necesito ayuda para [pagar](numero_opcion)
-    - quiero pagar mi factura
-    - quiero pagar mi cuenta
-    - quiero pagar
-    - cómo puedo pagar mi servicio
-    - ayuda con pagos
-    - consulta sobre pagos
-    - "No tengo señal en mi dispositivo."
-    - "Mi conexión a internet está fallando."
-    - "¿Por qué no tengo servicio?"
-    - "Me quedé sin señal de celular."
-    - "Mi red está caída."
-    - "Estoy teniendo problemas de conexión."
-    - "Se perdió la señal de mi internet."
-    - "Mi servicio no funciona correctamente."
-    - "Tengo problemas con la cobertura."
-    - "El internet está muy lento o no carga."
+MENU_DEFS = {
+    "menu_principal": {
+        "message": "🧩 1. Problema con mi servicio\n💸 2. Pagos y facturación\n🛠 3. Agendar o cambiar visita\n📱 4. Celular o energía\n🗣 5. Otro asunto",
+        "options": {
+            "1": ("submenu_problemas", "utter_opcion_problemas"),
+            "2": ("submenu_pagos", "utter_opcion_pagos"),
+            "3": ("submenu_agendar", "utter_opcion_agendar"),
+            "4": ("submenu_celular", "utter_opcion_celular"),
+            "5": ("submenu_otros", "utter_opcion_otros"),
+        },
+        "keywords": {
+            "problema": "1",
+            "tengo un problema": "1", 
+            "hay un problema": "1",
+            "problemas técnicos": "1",
+            "ayuda con problemas": "1",
+            "quiero resolver un problema": "1",
+            "pago": "2", 
+            "pagar": "2",
+            "factura": "2", 
+            "deuda": "2",
+            "ayuda con pagos": "2",
+            "cómo puedo pagar": "2",
+            "necesito pagar": "2",
+            "consulta de pagos": "2",
+            "agendar": "3", 
+            "cita": "3", 
+            "visita": "3",
+            "celular": "4", 
+            "energía": "4", 
+            "luz": "4",
+            "otro": "5", 
+            "queja": "5", 
+            "cancelar": "5", 
+            "comentario": "5", 
+            "sugerencia": "5", 
+            "saber más": "5"
+        }
+    },
+    "submenu_problemas": {
+        "message": "🧩 1. Sin señal\n2. Intermitente\n3. Ya pagué pero sin servicio\n4. Técnico no dejó bien\n5. Regresar al menú principal",
+        "options": {
+            "1": ("problemas_1", "utter_solucion_problemas_1"),
+            "2": ("problemas_2", "utter_solucion_problemas_2"),
+            "3": ("problemas_3", "utter_solucion_problemas_3"),
+            "4": ("problemas_4", "utter_solucion_problemas_4"),
+            "5": ("menu_principal", "utter_menu_principal"),
+        },
+        "keywords": {
+            "sin señal": "1", "no tengo señal": "1",
+            "intermitente": "2", "lento": "2",
+            "ya pagué": "3", "sin servicio": "3", "pagué": "3",
+            "técnico": "4", "no quedó bien": "4",
+            "volver": "5", "regresar": "5", "menú principal": "5"
+        }
+    },
+    "submenu_pagos": {
+        "message": "💸 1. Validar pago\n2. Consultar deuda\n3. Solicitar forma de pago\n4. Reactivar servicio\n5. Regresar al menú principal",
+        "options": {
+            "1": ("pagos_1", "utter_solucion_pagos_1"),
+            "2": ("pagos_2", "utter_solucion_pagos_2"),
+            "3": ("pagos_3", "utter_solucion_pagos_3"),
+            "4": ("pagos_4", "utter_solucion_pagos_4"),
+            "5": ("menu_principal", "utter_menu_principal"),
+        },
+        "keywords": {
+            "validar pago": "1", "validar": "1", "pago recibido": "1",
+            "deuda": "2", "consultar deuda": "2",
+            "forma de pago": "3", "código": "3", "qr": "3",
+            "reactivar": "4", "servicio": "4",
+            "volver": "5", "regresar": "5", "menú principal": "5"
+        }
+    },
+    "submenu_agendar": {
+        "message": "🛠 1. Agendar visita\n2. Cambiar domicilio\n3. Cancelar visita\n4. Confirmar cita\n5. Regresar al menú principal",
+        "options": {
+            "1": ("agendar_1", "utter_solucion_agendar_1"),
+            "2": ("agendar_2", "utter_solucion_agendar_2"),
+            "3": ("agendar_3", "utter_solucion_agendar_3"),
+            "4": ("agendar_4", "utter_solucion_agendar_4"),
+            "5": ("menu_principal", "utter_menu_principal"),
+        },
+        "keywords": {
+            "agendar visita": "1", "agendar": "1",
+            "cambiar domicilio": "2", "cambiar dirección": "2",
+            "cancelar visita": "3", "cancelar": "3",
+            "confirmar cita": "4", "confirmar": "4",
+            "volver": "5", "regresar": "5", "menú principal": "5"
+        }
+    },
+    "submenu_celular": {
+        "message": "📱 1. Contratar plan celular\n2. Ahorrar luz\n3. Dudas servicios\n4. Soporte\n5. Regresar al menú principal",
+        "options": {
+            "1": ("celular_1", "utter_solucion_celular_1"),
+            "2": ("celular_2", "utter_solucion_celular_2"),
+            "3": ("celular_3", "utter_solucion_celular_3"),
+            "4": ("celular_4", "utter_solucion_celular_4"),
+            "5": ("menu_principal", "utter_menu_principal"),
+        },
+        "keywords": {
+            "contratar plan": "1",
+            "información de planes celulares": "1",
+            "planes celulares": "1",
+            "ahorrar luz": "2",
+            "plan luz": "2",
+            "dudas servicios": "3",
+            "soporte técnico celular": "4",
+            "volver": "5",
+            "regresar": "5",
+            "menú principal": "5"
+        }
+    },
+    "submenu_otros": {
+        "message": "🗣 1. Cancelar servicio\n2. Quejarme\n3. Saber más\n4. Comentario o sugerencia\n5. Regresar al menú principal",
+        "options": {
+            "1": ("otros_1", "utter_solucion_otros_1"),
+            "2": ("otros_2", "utter_solucion_otros_2"),
+            "3": ("otros_3", "utter_solucion_otros_3"),
+            "4": ("otros_4", "utter_solucion_otros_4"),
+            "5": ("menu_principal", "utter_menu_principal"),
+        },
+        "keywords": {
+            "cancelar servicio": "1", "cancelar": "1",
+            "quejarme": "2", "queja": "2",
+            "saber más": "3", "información": "3",
+            "comentario": "4", "sugerencia": "4",
+            "volver": "5", "regresar": "5", "menú principal": "5"
+        }
+    }
+}
 
-- intent: saludar
-  examples: |
-    - hola
-    - buenos días
-    - buenas tardes
-    - buenas noches
-    - hey
-    - que tal
-    - holi
-    - buen día
-    - saludo
+class ActionElegirOpcion(Action):
+    def name(self) -> Text:
+        return "action_elegir_opcion"
 
-- intent: despedida
-  examples: |
-    - adiós
-    - hasta luego
-    - nos vemos
-    - chau
-    - bye
-    - gracias, eso es todo
-    - me despido
+    def run(self, dispatcher, tracker, domain) -> List[Dict[Text, Any]]:
+        estado = tracker.get_slot("estado_menu") or "menu_principal"
+        texto = tracker.latest_message.get("text", "").lower().strip()
+        numero_opcion = next(
+            (ent.get("value") for ent in tracker.latest_message.get("entities", [])
+             if ent.get("entity") == "numero_opcion"), None
+        )
 
-- intent: afirmar
-  examples: |
-    - sí
-    - claro
-    - correcto
-    - de acuerdo
-    - por supuesto
-    - exacto
+        # Si no es número, busca palabra clave
+        if not numero_opcion and estado in MENU_DEFS:
+            for palabra, opcion in MENU_DEFS[estado].get("keywords", {}).items():
+                if palabra in texto:
+                    numero_opcion = opcion
+                    break
 
-- intent: negar
-  examples: |
-    - no
-    - para nada
-    - negativo
-    - nunca
-    - no gracias
+        # Fallback global: si el usuario quiere regresar al menú principal desde cualquier estado
+        if any(x in texto for x in ["regresar", "volver", "menú principal"]):
+            dispatcher.utter_message(response="utter_menu_principal")
+            return [SlotSet("estado_menu", "menu_principal")]
 
-- intent: regresar_menu
-  examples: |
-    - volver al menú
-    - regresar al menú principal
-    - menú principal
-    - regresar
-    - volver
-    - quiero volver al inicio
+        # Navegación normal de menú/submenú y manejo de opciones
+        if estado in MENU_DEFS and numero_opcion in MENU_DEFS[estado]["options"]:
+            next_state, utterance = MENU_DEFS[estado]["options"][numero_opcion]
+            dispatcher.utter_message(response=utterance)
+            return [SlotSet("estado_menu", next_state)]
 
-- intent: fallback
-  examples: |
-    - ?
-    - no entendí
-    - puedes repetir
-    - qué dijiste
-    - repite por favor
-    - no comprendo
-- intent: no_funciona_el_mensaje_1
-  examples: |
-    - no funciona
-    - sigue sin funcionar
-    - no sirvió
-    - no me ayudó
-    - no se resolvió
-    - sigue igual
-    - nada cambió
-    - nada sirvió
-    - no resolvió mi problema
+        # Fallback personalizado
+        dispatcher.utter_message(response="utter_fallback_custom")
+        dispatcher.utter_message(text="No entendí tu elección. Por favor, selecciona una opción válida.")
+        if estado in MENU_DEFS:
+            dispatcher.utter_message(text=MENU_DEFS[estado]["message"])
+        else:
+            dispatcher.utter_message(response="utter_menu_principal")
+        return []
