@@ -13,13 +13,14 @@ import os
 
 MENU_DEFS = {
     "menu_principal": {
-        "message": "🧩 1. Problema con mi servicio\n💸 2. Pagos y facturación\n🛠 3. Agendar o cambiar visita\n📱 4. Celular o energía\n🗣 5. Otro asunto",
+        "message": "🧩 1. Problema con mi servicio\n💸 2. Pagos y facturación\n🛠 3. Agendar o cambiar visita\n📱 4. Celular o energía\n 🎁 5. Conoce nuestros planes\n🗣 6. Otro asunto",
         "options": {
             "1": ("submenu_problemas", "utter_opcion_problemas"),
             "2": ("submenu_pagos", "utter_opcion_pagos"),
             "3": ("submenu_agendar", "utter_opcion_agendar"),
             "4": ("submenu_celular", "utter_opcion_celular"),
-            "5": ("submenu_otros", "utter_opcion_otros"),
+            "6": ("submenu_otros", "utter_opcion_otros"),
+            "5": ("submenu_planes", "utter_seleccion_planes")
         },
         "keywords": {
             "problema": "1", "soporte": "1",
@@ -30,7 +31,7 @@ MENU_DEFS = {
         }
     },
     "submenu_problemas": {
-        "message": "🧩 1. Sin señal\n2. Intermitente\n3. Ya pagué pero sin servicio\n4. Técnico no dejó bien\n5. Regresar al menú principal",
+        "message": "🧩 1. Sin señal\n2. Intermitente\n3. Ya pagué pero sigo sin servicio\n4. Técnico no dejó bien\n5. Regresar al menú principal",
         "options": {
             "1": ("problemas_1", "utter_solucion_problemas_1"),
             "2": ("problemas_2", "utter_solucion_problemas_2"),
@@ -112,6 +113,15 @@ MENU_DEFS = {
             "saber más": "3", "información": "3",
             "comentario": "4", "sugerencia": "4",
             "volver": "5", "regresar": "5", "menú principal": "5"
+        }
+    },#Planes
+    "submenu_planes": {
+        "message": "FUERA SE SERVICIO",
+        "options": {
+            "1": ("menu_principal", "utter_menu_principal")
+        },
+        "keywords": {
+            "volver": "1", "regresar": "1", "menú principal": "1"
         }
     }
 }

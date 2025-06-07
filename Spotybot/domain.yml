@@ -60,7 +60,8 @@ responses:
         💸 2. Pagos y facturación
         🛠 3. Agendar o cambiar visita
         📱 4. Celular o energía
-        🗣 5. Otro asunto
+        🎁 5. Conoce nuestros planes
+        🗣 6. Otro asunto
 
   utter_opcion_problemas:
     - text: |
@@ -70,6 +71,9 @@ responses:
         3. Ya pagué pero sin servicio
         4. Técnico no dejó bien
         5. Regresar al menú principal
+
+  utter_solucion_problemas_4:
+    - text: "Lamento escuchar eso. Por favor comunícate al 614 399 00 92 para asistencia inmediata."
 
   utter_opcion_pagos:
     - text: |
@@ -97,7 +101,17 @@ responses:
         3. Dudas servicios
         4. Soporte
         5. Regresar al menú principal
+  utter_solucion_problemas_3:
+    - text: | 
+        Lamento que aun no tengas servicio 
 
+
+        Si ya relizaste el pago, entonces ahora mismo se esta acreditando 
+        Manten a la mano tu recibo de pago 
+
+        
+        Si despues de un tiempo aun no se acredita, entonces contacta a servicio tecnico al 📞 614 399 00 92
+        Estamos encantados de atenderte 😁
   utter_opcion_otros:
     - text: |
         🗣 Otro asunto
@@ -106,6 +120,63 @@ responses:
         3. Saber más
         4. Comentario o sugerencia
         5. Regresar al menú principal
+  utter_solucion_otros_3:
+    - text: |
+        En Spot Uno nos gusta conectar donde otros no se atreven.
+            Nuestra misión es ofrecerte internet de alta velocidad y telefonía móvil donde más lo necesitas. 
+            Pero no solo eso, con Spot Energy estamos listos para llevarte energía donde el resto no llega. 
+            Porque sabemos que tu vida debe ir sin interrupciones.
+
+
+        Lo que nos diferencia
+        ✨ Cobertura donde nadie más llega
+        ✨ Soporte real, siempre disponible
+        ✨ Planes que se adaptan a tu vida, sin letras chiquitas
+        ✨ Planes de internet y telefonia móvil (Doble Play)
+        ✨ Personal capacitado que entiende tus necesidades
+
+  utter_seleccion_planes:
+    - text: |
+        ¡Tenemos los mejores planes!
+        ¡Obten el que mas te guste!
+
+
+        Spotty10
+        $320/mes
+
+
+        🛜 Perfecto para navegar, redes sociales y YouTube en HD.
+        Disfruta clases en línea, reuniones o series sin interrupciones.
+        10 Mbps de velocidad + descargas ilimitadas.
+
+
+        ✨¡POPULAR!✨
+        Spotty20
+        $360/mes
+        
+
+        ⚡️ Transmite en 4K y juega en línea sin lag.
+        Hasta 5 dispositivos conectados al mismo tiempo sin perder velocidad.
+        20 Mbps con experiencia mejorada y sin interrupciones.
+
+
+        MySpotty
+        Personaliza tu plan 
+        
+
+        ⚒️ ¿Necesitas más velocidad o estabilidad? Ármalo a tu medida.
+        Desde 30 Mbps hasta 1000 Mbps o más, según tus necesidades.
+        ¡Configúralo en menos de 2 minutos! Sin sorpresas en el precio.
+
+
+        CONTRATA AHORA 
+        Whatsapp | 📞 614 399 00 92
+
+        https://wa.me/526146071503?text=Estoy%20interesado%20en%20el%20paquete%20Básico
+
+
+        Sin costo de Instalación *
+        
 
   utter_solucion_problemas_1:
     - text: "Por favor, verifica que el módem esté prendido y reinicia si es necesario. Si el problema persiste, contacta a soporte técnico al 614 399 00 92."
@@ -121,6 +192,34 @@ responses:
 
   utter_contactar_soporte:
     - text: "Lamento escuchar eso. Por favor comunícate al 614 399 00 92 para asistencia inmediata."
+
+  utter_solucion_otros_4:
+    - text: ¿Quieres mandarnos un comentario o sugerencia? Envianos un e-mail contrataciones@spotuno.mx
+  
+  utter_solucion_otros_2:
+    - text: |
+        Lamentamos mucho que tengas alguna queja 
+
+
+        Envianos tu queja por vía e-mail contrataciones@spotuno.mx
+  utter_solucion_otros_1:
+    - text: |
+        Para cancelar tu servicio, puedes contactarnos al numero 614 399 00 92
+  
+  utter_solucion_agendar_1:
+    - text: Para agendar una cita, puedes contactarnos al numero 614 399 00 92 o por nuestro e-main contrataciones@spotuno.mx
+  
+  utter_solucion_agendar_2:
+    - text: Si quieres cambiar tu domicilio, puedes contactarnos al numero 614 399 00 92 o por nuestro e-main contrataciones@spotuno.mx
+  
+  utter_solucion_agendar_3:
+   - text: Para cancelar tu visita, puedes contactacrnos al numero 614 399 00 92 y proporciona los datos con los que contrataste tu cita para proceder con la cancelacion.
+  
+  utter_solucion_celular_3:
+   - text: En spotUno queremos que vivas sin interrupciones. Conéctate con nosotros y disfruta del mejor internet, telefonía móvil sin límites y dile adiós a tu recibo de CFE con Spot Energy.
+
+  
+
 
 session_config:
   session_expiration_time: 60

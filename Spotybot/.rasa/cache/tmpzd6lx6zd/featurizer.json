@@ -1,0 +1,82 @@
+{
+  "type": "MaxHistoryTrackerFeaturizer",
+  "state_featurizer": {
+    "action_texts": [],
+    "entity_tag_specs": [],
+    "feature_states": {
+      "intent": {
+        "afirmar": 0,
+        "back": 1,
+        "dar_numero_cuenta": 2,
+        "despedida": 3,
+        "fallback": 4,
+        "fecha_cita": 5,
+        "negar": 6,
+        "nlu_fallback": 7,
+        "no_funciona_el_mensaje_1": 8,
+        "out_of_scope": 9,
+        "regresar_menu": 10,
+        "restart": 11,
+        "saludar": 12,
+        "seleccionar_opcion": 13,
+        "session_start": 14
+      },
+      "action_name": {
+        "action_listen": 0,
+        "action_restart": 1,
+        "action_session_start": 2,
+        "action_default_fallback": 3,
+        "action_deactivate_loop": 4,
+        "action_revert_fallback_events": 5,
+        "action_default_ask_affirmation": 6,
+        "action_default_ask_rephrase": 7,
+        "action_two_stage_fallback": 8,
+        "action_unlikely_intent": 9,
+        "action_back": 10,
+        "...": 11,
+        "action_extract_slots": 12,
+        "action_elegir_opcion": 13,
+        "action_fallback": 14,
+        "action_guardar_cita_y_generar_ticket": 15,
+        "utter_contactar_soporte": 16,
+        "utter_fallback_custom": 17,
+        "utter_menu_principal": 18,
+        "utter_opcion_agendar": 19,
+        "utter_opcion_celular": 20,
+        "utter_opcion_otros": 21,
+        "utter_opcion_pagos": 22,
+        "utter_opcion_problemas": 23,
+        "utter_saludar": 24,
+        "utter_seleccion_planes": 25,
+        "utter_solucion_agendar_1": 26,
+        "utter_solucion_agendar_2": 27,
+        "utter_solucion_agendar_3": 28,
+        "utter_solucion_celular_1": 29,
+        "utter_solucion_celular_3": 30,
+        "utter_solucion_celular_4": 31,
+        "utter_solucion_otros_1": 32,
+        "utter_solucion_otros_2": 33,
+        "utter_solucion_otros_3": 34,
+        "utter_solucion_otros_4": 35,
+        "utter_solucion_problemas_1": 36,
+        "utter_solucion_problemas_2": 37,
+        "utter_solucion_problemas_3": 38,
+        "utter_solucion_problemas_4": 39,
+        "agendar_visita_form": 40
+      },
+      "entities": {
+        "fecha_cita": 0,
+        "numero_cuenta": 1,
+        "numero_opcion": 2
+      },
+      "slots": {
+        "estado_menu_0": 0
+      },
+      "active_loop": {
+        "agendar_visita_form": 0
+      }
+    }
+  },
+  "remove_duplicates": true,
+  "max_history": 5
+}
