@@ -10,6 +10,7 @@ intents:
   - fallback
   - dar_numero_cuenta
   - fecha_cita
+  - no_funciona_el_mensaje_1
 
 entities:
   - numero_opcion
@@ -46,7 +47,7 @@ forms:
     required_slots:
       - numero_cuenta
       - fecha_cita
- #
+
 responses:
   utter_saludar:
     - text: |
@@ -107,55 +108,22 @@ responses:
         5. Regresar al menú principal
 
   utter_solucion_problemas_1:
-    - text: "Por favor, verifica que el módem esté prendido y reinicia si es necesario."
+    - text: "Por favor, verifica que el módem esté prendido y reinicia si es necesario. Si el problema persiste, contacta a soporte técnico al 614 399 00 92."
   utter_solucion_problemas_2:
-    - text: "Verifica tu conexión y reinicia el módem para mejorar la velocidad."
-  utter_solucion_problemas_3:
-    - text: "Tu pago está en proceso. Si ya pagaste, espera unos minutos o contacta soporte."
-  utter_solucion_problemas_4:
-    - text: "Generando nuevo reporte para que te contacten de soporte técnico."
-
-  utter_solucion_pagos_1:
-    - text: "Validando si tu pago ha sido recibido..."
-  utter_solucion_pagos_2:
-    - text: "Consultando tu deuda actual..."
-  utter_solucion_pagos_3:
-    - text: "Generando forma de pago..."
-  utter_solucion_pagos_4:
-    - text: "Reactivando servicio, por favor espera confirmación."
-
-  utter_solucion_agendar_1:
-    - text: "¿Para qué fecha deseas agendar tu visita? Por favor, proporciona tu número de cuenta."
-  utter_solucion_agendar_2:
-    - text: "Por favor, indica tu nuevo domicilio para actualizarlo."
-  utter_solucion_agendar_3:
-    - text: "Procesando la cancelación de tu visita."
-  utter_solucion_agendar_4:
-    - text: "Confirmando tu cita. ¿Te gustaría recibir detalles por correo?"
-
+    - text: "Tu conexión está intermitente. Intenta reiniciar tu equipo. Si el problema continúa, llama al soporte técnico al 614 399 00 92."
   utter_solucion_celular_1:
-    - text: "Estos son los planes de celular disponibles. ¿Te gustaría más información?"
-  utter_solucion_celular_2:
-    - text: "Aquí tienes opciones para ahorrar energía con nuestros servicios."
-  utter_solucion_celular_3:
-    - text: "¿Qué dudas tienes sobre nuestros servicios de celular o energía?"
+    - text: "Tenemos planes celulares que se adaptan a tus necesidades. ¿Quieres más información sobre un plan específico?"
   utter_solucion_celular_4:
-    - text: "¿En qué podemos ayudarte con tu equipo o servicio?"
-
-  utter_solucion_otros_1:
-    - text: "Procesaremos la cancelación de tu servicio. ¿Nos indicas tu número de cuenta?"
-  utter_solucion_otros_2:
-    - text: "Por favor, cuéntanos tu queja."
-  utter_solucion_otros_3:
-    - text: "SpotUno es una empresa líder en servicios digitales. ¿Quieres más información?"
-  utter_solucion_otros_4:
-    - text: "Déjanos tu comentario o sugerencia, ¡nos ayuda a mejorar!"
+    - text: "Para soporte técnico de tu celular, por favor contáctanos al 614 399 00 92."
 
   utter_fallback_custom:
     - text: "No entendí tu mensaje. Puedes elegir una opción del menú escribiendo el número o palabra clave."
 
   utter_contactar_soporte:
-    - text: "Lamento escuchar eso. Por favor comunicate al 614 399 00 92 para asistencia inmediata."
+    - text: "Lamento escuchar eso. Por favor comunícate al 614 399 00 92 para asistencia inmediata."
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+  utter_session_expired:
+    - text: "Tu sesión ha expirado. Por favor, inicia de nuevo."
