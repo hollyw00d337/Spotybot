@@ -159,6 +159,27 @@ nlu:
     - regresar
     - volver
     - quiero volver al inicio
+    - llevame al menu
+    - quiero regresar
+    - volver al inicio
+    - menú
+    - menu
+    - inicio
+    - salir de aquí
+    - no me gusta esta opción
+    - mejor volver
+    - cancelar
+    - atrás
+    - volver atrás
+    - menu principal por favor
+    - quiero el menu principal
+    - me perdí, volver al menu
+    - estoy confundido, volver
+    - no es lo que busco
+    - otras opciones
+    - ver otras opciones
+    - opciones principales
+    - volver a las opciones principales
 
 - intent: fallback
   examples: |
@@ -168,6 +189,27 @@ nlu:
     - qué dijiste
     - repite por favor
     - no comprendo
+    - no se que hacer
+    - estoy perdido
+    - no entiendo nada
+    - ayuda
+    - ayúdame
+    - me perdí
+    - estoy confundido
+    - esto no funciona
+    - no me sirve
+    - algo más
+    - otra cosa
+    - qué más puedo hacer
+    - no encuentro lo que busco
+    - no veo mi opción
+    - esto no es lo que quiero
+    - me equivoqué
+    - opción incorrecta
+    - hola?
+    - hay alguien ahí?
+    - no respondes
+    - no me ayudas
 - intent: no_funciona_el_mensaje_1
   examples: |
     - no funciona
@@ -179,3 +221,29 @@ nlu:
     - nada cambió
     - nada sirvió
     - no resolvió mi problema
+- intent: datos_qr
+  examples: |
+    - Juan Pérez|30|Pago S1 M30
+    - María González|100|Pago S1 M100
+    - Carlos López|120|Pago S1 M120
+    - Ana Martínez|220|Pago S1 M220
+    - Luis Rivera|500|Pago internet enero
+    - Sofia Castro|360|Pago plan Spotty20
+    - Diego Hernández|320|Pago plan Spotty10
+    - Carmen Ruiz|30|Pago paquete 3 días
+    - Roberto Silva|100|Pago mensual celular
+    - Patricia Morales|120|Pago plan 4GB
+    - Fernando Díaz|220|Pago plan 24.5GB
+    - Gabriela Torres|100|Pago redes sociales
+    - Alejandro Vega|120|Compartición datos
+    - Isabel Flores|30|Pago emergencia
+    - Miguel Sandoval|220|Pago plan completo
+    - José Antonio García|500|Pago servicio internet
+    - Pedro Ramírez|100|Pago básico celular
+    - Laura Mendoza|220|Pago premium móvil
+    - nombre completo|100|concepto de pago
+    - nombre apellido|monto|descripción del pago
+    - datos que usaremos para el codigo QR
+    - datos para el código QR
+    - información para el código QR
+    

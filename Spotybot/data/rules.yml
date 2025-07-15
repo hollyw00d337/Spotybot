@@ -2,12 +2,6 @@ version: "3.1"
 
 rules:
 
-- rule: Saludo e inicio
-  steps:
-    - intent: saludar
-    - action: utter_saludar
-    - action: utter_menu_principal
-
 - rule: Selección de opción en cualquier menú
   steps:
     - intent: seleccionar_opcion
@@ -17,13 +11,18 @@ rules:
   steps:
     - intent: regresar_menu
     - action: utter_menu_principal
-    - slot_was_set:
-        - estado_menu: menu_principal
 
 - rule: Fallback personalizado
   steps: 
     - intent: fallback
     - action: action_fallback
+
+- rule: Ayuda rápida después de fallback
+  steps:
+    - action: action_fallback
+    - intent: regresar_menu
+    - action: utter_menu_principal
+
 - rule: Guardar cita y generar ticket
   steps:
     - active_loop: agendar_visita_form
@@ -31,5 +30,10 @@ rules:
 
 - rule: Usuario dice que no funciono
   steps: 
-  - intent: no_funciona
-  - action: utter_contactar_soporte
+    - intent: no_funciona
+    - action: utter_contactar_soporte
+
+- rule: Procesar datos para QR
+  steps:
+    - intent: datos_qr
+    - action: action_procesar_datos_qr

@@ -5,9 +5,9 @@ from rasa_sdk.forms import FormValidationAction
 from typing import List, Dict, Any, Text
 from rasa_sdk.types import DomainDict
 from datetime import datetime
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.units import cm
+#from reportlab.pdfgen import canvas
+#from reportlab.lib.pagesizes import A4
+#from reportlab.lib.units import cm
 from PIL import Image
 import os
 
@@ -82,19 +82,19 @@ MENU_DEFS = {
         }
     },
     "submenu_celular": {
-        "message": "📱 1. Contratar plan celular\n2. Ahorrar luz\n3. Dudas servicios\n4. Soporte\n5. Regresar al menú principal",
+        "message": "📱 1. Ver planes de celular\n2. Generar código QR de pago\n3. Dudas servicios\n4. Soporte\n5. Regresar al menú principal",
         "options": {
-            "1": ("celular_1", "utter_solucion_celular_1"),
-            "2": ("celular_2", "utter_solucion_celular_2"),
+            "1": ("submenu_celular", "utter_planes_celular"),
+            "2": ("capturar_datos_qr", "utter_solicitar_datos_qr"),
             "3": ("celular_3", "utter_solucion_celular_3"),
             "4": ("celular_4", "utter_solucion_celular_4"),
             "5": ("menu_principal", "utter_menu_principal"),
         },
         "keywords": {
-            "contratar plan": "1", "plan celular": "1",
-            "ahorrar luz": "2", "plan luz": "2",
-            "dudas servicios": "3", "dudas": "3",
-            "soporte": "4",
+            "planes": "1", "plan celular": "1", "celular": "1",
+            "pago": "2", "qr": "2", "código": "2", "forma de pago": "2",
+            "dudas servicios": "3", "dudas": "3", "información": "3",
+            "soporte": "4", "ayuda": "4",
             "volver": "5", "regresar": "5", "menú principal": "5"
         }
     },
@@ -126,6 +126,111 @@ MENU_DEFS = {
     }
 }
 
+class ActionMostrarPlanesCelular(Action):
+    def name(self) -> Text:
+        return "action_mostrar_planes_celular"
+
+    def run(self, dispatcher, tracker, domain) -> List[Dict[Text, Any]]:
+        # Mostrar los planes celulares
+        dispatcher.utter_message(response="utter_planes_celular")
+        
+        # Mantener el estado en el submenú celular para permitir navegación
+        return [SlotSet("estado_menu", "submenu_celular")]
+
+class ActionGenerarQrPago(Action):
+    def name(self) -> Text:
+        return "action_generar_qr_pago"
+
+    def run(self, dispatcher, tracker, domain) -> List[Dict[Text, Any]]:
+        # Solicitar datos necesarios para generar el QR
+        dispatcher.utter_message(response="utter_solicitar_datos_qr")
+        
+        # Cambiar el estado del menú para capturar los datos
+        return [SlotSet("estado_menu", "capturar_datos_qr")]
+
+class ActionProcesarDatosQr(Action):
+    def name(self) -> Text:
+        return "action_procesar_datos_qr"
+
+    def run(self, dispatcher, tracker, domain) -> List[Dict[Text, Any]]:
+        import requests
+        import json
+        
+        # Obtener el texto del usuario (debería contener los datos)
+        user_message = tracker.latest_message.get('text', '')
+        
+        try:
+            # Parsear los datos del usuario
+            # Formato esperado: "Nombre|Monto|Concepto"
+            datos = user_message.split('|')
+            
+            if len(datos) >= 3:
+                nombre = datos[0].strip()
+                monto = datos[1].strip()
+                concepto = datos[2].strip()
+                
+                # Preparar payload para tu API
+                payload = {
+                    "nombre": nombre,
+                    "monto": float(monto),
+                    "concepto": concepto,
+                    "empresa": "SpotUno Telecomunicaciones"
+                }
+                
+                # Hacer petición a tu microservicio
+                response = requests.post(
+                    "https://apps-ws.spot1.mx/reference-codi",
+                    json=payload,
+                    headers={"Content-Type": "application/json"},
+                    timeout=10
+                )
+                
+                if response.status_code == 200:
+                    qr_data = response.json()
+                    # El microservicio debe devolver un link
+                    qr_link = qr_data.get('link', qr_data.get('url', qr_data.get('qr_url', 'No disponible')))
+                    
+                    dispatcher.utter_message(
+                        text=f"✅ ¡Código QR generado exitosamente!\n\n"
+                             f"📱 **Tu código QR personalizado está listo**\n"
+                             f"💰 Monto: ${monto}\n"
+                             f"� Beneficiario: {nombre}\n"
+                             f"📝 Concepto: {concepto}\n\n"
+                             f"🔗 **Link del código QR:**\n{qr_link}\n\n"
+                             f"📱 Puedes abrir este link desde tu celular para ver el código QR\n"
+                             f"💳 O escanearlo con cualquier app bancaria\n\n"
+                             f"⚠️ **IMPORTANTE:**\n"
+                             f"• Guarda este link y tu comprobante de pago\n"
+                             f"• El servicio se activa en 24-48 hrs\n"
+                             f"• Para dudas: 📞 614 399 00 92"
+                    )
+                else:
+                    dispatcher.utter_message(
+                        text=f"❌ Error al generar el código QR (Código: {response.status_code})\n"
+                             f"Por favor intenta nuevamente o contacta soporte: 614 399 00 92"
+                    )
+            else:
+                dispatcher.utter_message(response="utter_formato_datos_incorrecto")
+                
+        except requests.exceptions.RequestException as e:
+            dispatcher.utter_message(
+                text="❌ Error de conexión con el servicio de códigos QR.\n"
+                     "Por favor intenta más tarde o contacta soporte: 📞 614 399 00 92"
+            )
+        except ValueError:
+            dispatcher.utter_message(
+                text="❌ El monto debe ser un número válido.\n"
+                     "Ejemplo: Juan Pérez|500|Pago internet enero"
+            )
+        except Exception as e:
+            dispatcher.utter_message(
+                text="❌ Error al procesar los datos.\n"
+                     "Verifica el formato: NombreCompleto|Monto|Concepto"
+            )
+        
+        # Regresar al menú de celular
+        return [SlotSet("estado_menu", "submenu_celular")]
+
 class ActionElegirOpcion(Action):
     def name(self) -> Text:
         return "action_elegir_opcion"
@@ -153,6 +258,7 @@ class ActionElegirOpcion(Action):
         # Navegación normal de menú/submenú y manejo de formulario
         if estado in MENU_DEFS and numero_opcion in MENU_DEFS[estado]["options"]:
             next_state, utterance = MENU_DEFS[estado]["options"][numero_opcion]
+            
             # Caso especial: activar formulario en submenu_agendar y opción 1
             if estado == "submenu_agendar" and numero_opcion == "1":
                 dispatcher.utter_message(response=utterance)
@@ -160,8 +266,35 @@ class ActionElegirOpcion(Action):
                     SlotSet("estado_menu", next_state),
                     {"active_loop": "agendar_visita_form"}
                 ]
+            
+            # Caso especial: acciones personalizadas para celular
+            if estado == "submenu_celular" and numero_opcion == "1":
+                # Ejecutar action_mostrar_planes_celular
+                from rasa_sdk.executor import CollectingDispatcher
+                action_mostrar_planes = ActionMostrarPlanesCelular()
+                action_mostrar_planes.run(dispatcher, tracker, domain)
+                return [SlotSet("estado_menu", next_state)]
+            elif estado == "submenu_celular" and numero_opcion == "2":
+                # Ejecutar action_generar_qr_pago
+                action_generar_qr = ActionGenerarQrPago()
+                action_generar_qr.run(dispatcher, tracker, domain)
+                return [SlotSet("estado_menu", next_state)]
+            
+            # Para el resto de casos, usar utterance normal
             dispatcher.utter_message(response=utterance)
             return [SlotSet("estado_menu", next_state)]
+
+        # Si estamos en estado de capturar datos QR, procesar los datos
+        elif estado == "capturar_datos_qr":
+            # Si el texto contiene el formato de datos (nombre|monto|concepto)
+            if "|" in texto and len(texto.split("|")) >= 3:
+                action_procesar_qr = ActionProcesarDatosQr()
+                action_procesar_qr.run(dispatcher, tracker, domain)
+                return []
+            else:
+                # Formato incorrecto, mostrar instrucciones nuevamente
+                dispatcher.utter_message(response="utter_formato_datos_incorrecto")
+                return []
 
         # Fallback personalizado
         dispatcher.utter_message(response="utter_fallback_custom")
@@ -178,12 +311,31 @@ class ActionFallback(Action):
         return "action_fallback"
 
     def run(self, dispatcher, tracker, domain) -> List[Dict[Text, Any]]:
+        # Fallback mejorado para cuando el usuario se pierde
         estado = tracker.get_slot("estado_menu") or "menu_principal"
-        dispatcher.utter_message(response="utter_fallback_custom")
-        if estado in MENU_DEFS:
-            dispatcher.utter_message(text=MENU_DEFS[estado]["message"])
-        else:
+        
+        # Contar cuántas veces seguidas ha caído en fallback
+        eventos_recientes = [evento for evento in tracker.events[-5:] if evento.get("name") == "action_fallback"]
+        num_fallbacks_consecutivos = len(eventos_recientes)
+        
+        if num_fallbacks_consecutivos >= 2:
+            # Si ya ha fallado varias veces, ofrecer volver al menú principal
+            dispatcher.utter_message(text="Veo que te has perdido un poco. Te llevo de vuelta al menú principal para que puedas empezar de nuevo.")
             dispatcher.utter_message(response="utter_menu_principal")
+            return [SlotSet("estado_menu", "menu_principal")]
+        else:
+            # Primer fallback: dar ayuda específica según el estado actual
+            dispatcher.utter_message(response="utter_fallback_custom")
+            
+            if estado in MENU_DEFS:
+                dispatcher.utter_message(text=f"Estás en: {MENU_DEFS[estado].get('name', 'un submenú')}.")
+                dispatcher.utter_message(text="Puedes escribir el número de la opción que te interesa, o decir 'volver al menú' para regresar al inicio.")
+                dispatcher.utter_message(text=MENU_DEFS[estado]["message"])
+            else:
+                dispatcher.utter_message(text="Puedes escribir 'menú' para ver las opciones principales.")
+                dispatcher.utter_message(response="utter_menu_principal")
+                return [SlotSet("estado_menu", "menu_principal")]
+        
         return []
 class ActionGuardarCitaYGenerarTicket(Action):
     def name(self) -> Text:
@@ -199,3 +351,15 @@ class ActionGuardarCitaYGenerarTicket(Action):
             f"¡Listo! Tu cita está agendada para el {fecha_cita} en la dirección: {direccion}. Se ha generado tu ticket."
         )
         return []
+
+class ActionSessionStart(Action):
+    def name(self) -> Text:
+        return "action_session_start"
+
+    def run(self, dispatcher, tracker, domain) -> List[Dict[Text, Any]]:
+        # Saludo automático al iniciar una nueva sesión
+        dispatcher.utter_message(response="utter_saludar")
+        dispatcher.utter_message(response="utter_menu_principal")
+        
+        # Establecer el estado inicial del menú
+        return [SlotSet("estado_menu", "menu_principal")]

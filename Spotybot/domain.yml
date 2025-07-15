@@ -10,7 +10,9 @@ intents:
   - fallback
   - dar_numero_cuenta
   - fecha_cita
+  - no_funciona
   - no_funciona_el_mensaje_1
+  - datos_qr
 
 entities:
   - numero_opcion
@@ -41,6 +43,10 @@ actions:
   - action_elegir_opcion
   - action_fallback
   - action_guardar_cita_y_generar_ticket
+  - action_mostrar_planes_celular
+  - action_generar_qr_pago
+  - action_procesar_datos_qr
+  - action_session_start
 
 forms:
   agendar_visita_form:
@@ -59,7 +65,7 @@ responses:
         🧩 1. Problema con mi servicio
         💸 2. Pagos y facturación
         🛠 3. Agendar o cambiar visita
-        📱 4. Celular o energía
+        📱 4. SpotMobile
         🎁 5. Conoce nuestros planes
         🗣 6. Otro asunto
 
@@ -95,9 +101,9 @@ responses:
 
   utter_opcion_celular:
     - text: |
-        📱 Celular o energía
-        1. Contratar plan celular
-        2. Ahorrar luz
+        📱 SpotMobile
+        1. Ver planes de celular
+        2. Generar código QR de pago
         3. Dudas servicios
         4. Soporte
         5. Regresar al menú principal
@@ -183,12 +189,119 @@ responses:
   utter_solucion_problemas_2:
     - text: "Tu conexión está intermitente. Intenta reiniciar tu equipo. Si el problema continúa, llama al soporte técnico al 614 399 00 92."
   utter_solucion_celular_1:
-    - text: "Tenemos planes celulares que se adaptan a tus necesidades. ¿Quieres más información sobre un plan específico?"
+    - text: "¡Perfecto! Te voy a mostrar todos nuestros planes de celular disponibles."
+  utter_solucion_celular_2:
+    - text: |
+        💡 Para ahorrar luz, contáctanos para más información sobre Spot Energy:
+        📞 614 399 00 92
+        📧 contrataciones@spotuno.mx
+        
+        Spot Energy - Energía donde otros no llegan
+  utter_solucion_celular_3:
+    - text: |
+        📱 Dudas sobre servicios celulares:
+        
+        En SpotUno ofrecemos:
+        • Planes de datos ilimitados
+        • Cobertura donde otros no llegan
+        • Soporte técnico especializado
+        • Planes Doble Play (Internet + Celular)
+        
+        Para más información: 📞 614 399 00 92
+  
+  utter_planes_celular:
+    - text: |
+        📱 ¡Conéctate con Spot1Mobile y #ViveSinInterrupciones!
+        Paquete S1 M30 – $30 / 3 días
+        ✅ 2 GB totales
+        ✅ Redes sociales ilimitadas
+        ✅ 63 minutos + 63 SMS
+        📌 Ideal para emergencias o conexión corta.
+
+        Paquete S1 M100 – $100 / 30 días
+        ✅ 2 GB + redes sociales ilimitadas
+        ✅ 1,500 minutos + 250 SMS 
+        💡 Perfecto si usas apps básicas y redes.
+
+        Paquete S1 M120 – $120 / 30 días
+        ✅ 4 GB totales
+        ✅ 1,500 minutos + 250 SMS
+        ✅ Compartición de datos
+        🎥 Para quienes navegan, ven videos o hacen videollamadas.
+
+        Paquete S1 M220 – $220 / 30 días
+        ✅ ¡24.5 GB totales!
+        ✅ 1,500 minutos + 250 SMS
+        ✅ Comparte tus datos
+        ⚡¡Potencia para gamers, trabajo remoto o compartir internet!
+        Pregunta por disponibilidad y activa el tuyo hoy mismo.
+
+  utter_qr_pago_generado:
+    - text: |
+        📱 CÓDIGO QR PARA PAGO 📱
+        
+        Escanea el siguiente código QR con tu app bancaria:
+        
+        [QR_CODE_PLACEHOLDER]
+        
+        💳 Información de pago:
+        • Beneficiario: SpotUno Telecomunicaciones
+        • Concepto: Pago de servicios
+        • Referencia: Tu número de cuenta
+        
+        📝 También puedes pagar con estos datos:
+        • CLABE: 0123456789012345678
+        • Banco: Banco Nacional
+        • Cuenta: 1234567890
+        
+        ⚠️ IMPORTANTE:
+        • Guarda tu comprobante de pago
+        • El servicio se activa en 24-48 hrs
+        • Para dudas: 📞 614 399 00 92
+
+  utter_solicitar_datos_qr:
+    - text: |
+        📱 GENERAR CÓDIGO QR DE PAGO 📱
+        
+        Para generar tu código QR personalizado, necesito los siguientes datos:
+        
+        📝 Envía tus datos en este formato exacto:
+        NombreCompleto|MontoAPagar|ConceptoDePago
+        
+        🔹 Ejemplos:
+        • Juan Pérez|500|Pago internet enero
+        • María González|120|Pago S1 M120
+        • Carlos López|220|Pago S1 M220
+        
+        ⚠️ IMPORTANTE:
+        • Separa los datos con el símbolo |
+        • No uses espacios antes o después del |
+        • El monto debe ser solo números
+        • Recibirás un link con tu código QR personalizado
+        
+        📞 ¿Dudas? Llama al 614 399 00 92
+
+  utter_formato_datos_incorrecto:
+    - text: |
+        ❌ FORMATO INCORRECTO
+        
+        Por favor, envía tus datos en el formato correcto:
+        NombreCompleto|MontoAPagar|ConceptoDePago
+        
+        🔹 Ejemplo:
+        María González|320|Pago plan Spotty10
+        
+        📝 Recuerda:
+        • Separar con el símbolo |
+        • Monto solo números
+        • Sin espacios extras
   utter_solucion_celular_4:
     - text: "Para soporte técnico de tu celular, por favor contáctanos al 614 399 00 92."
 
   utter_fallback_custom:
     - text: "No entendí tu mensaje. Puedes elegir una opción del menú escribiendo el número o palabra clave."
+    - text: "Disculpa, no entendí. Puedes escribir un número del menú o decir 'menú' para ver las opciones principales."
+    - text: "Lo siento, no pude comprender. Intenta escribir el número de la opción que te interesa o di 'volver al menú'."
 
   utter_contactar_soporte:
     - text: "Lamento escuchar eso. Por favor comunícate al 614 399 00 92 para asistencia inmediata."
@@ -215,14 +328,11 @@ responses:
   utter_solucion_agendar_3:
    - text: Para cancelar tu visita, puedes contactacrnos al numero 614 399 00 92 y proporciona los datos con los que contrataste tu cita para proceder con la cancelacion.
   
-  utter_solucion_celular_3:
-   - text: En spotUno queremos que vivas sin interrupciones. Conéctate con nosotros y disfruta del mejor internet, telefonía móvil sin límites y dile adiós a tu recibo de CFE con Spot Energy.
-
-  
 
 
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+  action_session_start: action_session_start
   utter_session_expired:
     - text: "Tu sesión ha expirado. Por favor, inicia de nuevo."

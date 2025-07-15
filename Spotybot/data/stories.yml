@@ -75,3 +75,163 @@ stories:
     - action: action_elegir_opcion
     - intent: no_funciona_el_mensaje_1
     - action: utter_contactar_soporte
+
+# Historias mejoradas para navegación robusta
+- story: Navegación profunda con regreso paso a paso
+  steps:
+    - intent: saludar
+    - action: utter_saludar
+    - action: utter_menu_principal
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+    - intent: regresar_menu
+    - action: utter_menu_principal
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+
+- story: Usuario se confunde y pide ayuda
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: fallback
+    - action: action_fallback
+    - intent: regresar_menu
+    - action: utter_menu_principal
+
+- story: Navegación con palabras clave y regreso
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "problema con mi servicio"
+    - action: action_elegir_opcion
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "sin señal"
+    - action: action_elegir_opcion
+    - intent: regresar_menu
+    - action: utter_menu_principal
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "3"
+    - action: action_elegir_opcion
+
+- story: Múltiples intentos fallidos seguidos de navegación correcta
+  steps:
+    - intent: fallback
+    - action: action_fallback
+    - intent: fallback
+    - action: action_fallback
+    - intent: regresar_menu
+    - action: utter_menu_principal
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Usuario navega entre submenús sin perderse
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: regresar_menu
+    - action: utter_menu_principal
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Flujo de recuperación después de confusión
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "algo que no existe"
+    - action: action_elegir_opcion
+    - intent: fallback
+    - action: action_fallback
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Usuario vuelve al menú desde estado profundo
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+    - intent: regresar_menu
+    - action: utter_menu_principal
+
+- story: Manejo de entrada inválida en submenú
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "99"
+    - action: action_elegir_opcion
+    - intent: regresar_menu
+    - action: utter_menu_principal
+
+- story: Navegación exitosa después de varios fallos
+  steps:
+    - intent: fallback
+    - action: action_fallback
+    - intent: regresar_menu
+    - action: utter_menu_principal
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+
+- story: Usuario explora múltiples opciones antes de decidir
+  steps:
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "1"
+    - action: action_elegir_opcion
+    - intent: regresar_menu
+    - action: utter_menu_principal
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "2"
+    - action: action_elegir_opcion
+    - intent: regresar_menu
+    - action: utter_menu_principal
+    - intent: seleccionar_opcion
+      entities:
+        - numero_opcion: "3"
+    - action: action_elegir_opcion
